@@ -1,0 +1,14 @@
+ACTIONS = {getBasePlate, setBasePlate, getSpring1, setSpring1, getSpring2, setSpring2, getPCB, setPCB, getLid, setLid, clickLid, getButton, setButton, getButton2, setButton2, getButton3, setButton3, checkSwitch, removeSwitch};
+RESOURCES = {robotL, robotR, operator};
+PRODUCTS = [1 2 ];
+actionStartTime = [60, 75, 75, 115, 105, 145, 206, 222, 242, 257, 322, 322, 352, 382, 412, 442, 472, 502, 532, 0, 15, 0, 40, 35, 75, 164, 180, 191, 206, 248, 262, 292, 322, 352, 382, 412, 442, 472];
+actionEndTime = [75, 98, 115, 145, 145, 180, 222, 248, 257, 292, 331, 352, 382, 412, 442, 472, 502, 532, 542, 15, 38, 40, 75, 75, 105, 180, 206, 206, 236, 257, 292, 322, 352, 382, 412, 442, 472, 482];
+actionDuration = [15, 23, 40, 30, 40, 35, 16, 26, 15, 35, 9, 30, 30, 30, 30, 30, 30, 30, 10, 15, 23, 40, 35, 40, 30, 16, 26, 15, 30, 9, 30, 30, 30, 30, 30, 30, 30, 10];
+selectedResource = [3, 3, 1, 1, 2, 2, 3, 3, 2, 2, 3, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 2, 3, 3, 2, 2, 3, 1, 1, 2, 2, 2, 2, 3, 3];
+resourceStartTimes = [0, 35, 0];
+resourceEndTimes = [502, 442, 542];
+resourceDurations = [502, 407, 542];
+obj = 542;
+softConstr = ;
+cycleTime = 542;
+maxDuration = ;

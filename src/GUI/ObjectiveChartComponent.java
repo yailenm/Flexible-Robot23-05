@@ -1,0 +1,147 @@
+package GUI;
+
+//import be.kahosl.flexjobshop.gui;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.util.Random;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class ObjectiveChartComponent extends JComponent {
+
+	private double [][] objectiveValues;
+	private String [] objectiveNames;
+	
+	private double interAngle;
+	
+	private int borderGap=30;
+	
+	private double[] maxObjectiveValues;
+	
+	private Color[] algorithmColors;
+	private String[] algorithmNames;
+	
+	private RenderingHints renderHints;
+	
+	public ObjectiveChartComponent(double [][] objectiveValues, String [] objectiveNames, String[] algorithmNames,Random rand) {
+		this.objectiveValues=objectiveValues;
+		this.objectiveNames=objectiveNames;
+		this.algorithmNames=algorithmNames;
+		
+		this.interAngle=2*Math.PI/(double)objectiveNames.length;
+		
+		maxObjectiveValues=new double[objectiveNames.length];
+
+		for (int obj = 0; obj < objectiveNames.length; obj++) {
+			double max=0;
+			for (int algo = 0; algo < objectiveValues.length; algo++) {
+				if (objectiveValues[algo][obj]>max){
+					max=objectiveValues[algo][obj];
+				}
+			}
+			maxObjectiveValues[obj]=max;
+		}
+		algorithmColors=new Color[objectiveValues.length];
+		for (int algo = 0; algo < objectiveValues.length; algo++) {
+			algorithmColors[algo]=new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
+		}
+		
+		renderHints =
+			  new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+			                     RenderingHints.VALUE_ANTIALIAS_ON);
+			renderHints.put(RenderingHints.KEY_RENDERING,
+			                RenderingHints.VALUE_RENDER_QUALITY);
+	}
+	
+	
+	public void paint(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHints(renderHints);
+		
+		g2d.setStroke(new BasicStroke(3)); 
+		g2d.setFont(new Font("Arial",Font.BOLD,12));
+		
+		int axisLength=Math.min(this.getWidth()/2, (int)(this.getHeight()*0.8)/2)-borderGap;
+		int centerX = this.getWidth()/2;
+		int centerY = (int)(this.getHeight()*0.8)/2;
+		
+		
+
+		
+		//draw axises
+		for (int i=0;i<objectiveNames.length;i++)
+		{
+			g2d.drawLine(centerX, centerY, centerX+(int)(axisLength*Math.cos(interAngle*i)), centerY+(int)(axisLength*Math.sin(interAngle*i)));
+			g2d.drawString(objectiveNames[i], centerX+(int)(axisLength*Math.cos(interAngle*i)), centerY+(int)(axisLength*Math.sin(interAngle*i)));
+		}
+		
+		//draw legenda
+		for (int algo = 0; algo < objectiveValues.length; algo++) {
+			g2d.setPaint(algorithmColors[algo]);
+			g2d.fillOval(borderGap-4, (int)(this.getHeight()*0.8)+algo*(g2d.getFont().getSize())-(g2d.getFont().getSize()/2)-2, 8, 8);
+			g2d.drawString(algorithmNames[algo], borderGap+10, (int)(this.getHeight()*0.8)+algo*g2d.getFont().getSize());
+		}
+		
+		//draw datapoints and lines
+		for (int algo = 0; algo < objectiveValues.length; algo++) {
+			Point previousPoint = null;
+			Point firstPoint = null;
+			Color algoColor= algorithmColors[algo];
+			g2d.setPaint(algoColor);
+			for (int obj = 0; obj < objectiveNames.length; obj++) {
+
+				double value = objectiveValues[algo][obj];
+				double axisScale = axisLength / (maxObjectiveValues[obj]*1.1);
+				double valuePositionOnAxis = value * axisScale;
+				Point valuePoint = new Point(centerX
+						+ (int) (valuePositionOnAxis * Math.cos(interAngle
+								* obj)), centerY
+						+ (int) (valuePositionOnAxis * Math.sin(interAngle
+								* obj)));
+				g2d.fillOval(centerX
+						+ (int) (valuePositionOnAxis * Math.cos(interAngle
+								* obj)) - 2, centerY
+						+ (int) (valuePositionOnAxis * Math.sin(interAngle
+								* obj)) - 2, 4, 4);
+
+				if (previousPoint != null) {
+					g2d.drawLine(previousPoint.x, previousPoint.y,
+							valuePoint.x, valuePoint.y);
+				}
+				if (firstPoint == null) {
+					firstPoint = valuePoint;
+				}
+				previousPoint = valuePoint;
+			}
+			g2d.drawLine(previousPoint.x, previousPoint.y, firstPoint.x,
+					firstPoint.y);
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		JFrame frame=new JFrame("Comparison-NoPert-Mk04.fjs-0.txt");
+		frame.add(new ObjectiveChartComponent(new double[][]{
+				{127.2, 11.0, 5.0, 1.646, 0.1296},
+				{104.8, 27.9, 3.3, 2.8, 0.25},
+				{112.4, 34.2, 6.5, 7.8, 0.181}
+															 },
+															 new String[]{"Cmax","Tmax","Tn","Tmean","Calc. Time"},
+															 new String[]{"SAFlexS","Rolling Time","Offline"},new Random(5)));
+		frame.setSize(600, 750);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+	
+}
+

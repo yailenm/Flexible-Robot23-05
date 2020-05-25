@@ -1,0 +1,264 @@
+import java.io.PrintWriter;
+import java.util.LinkedList;
+
+public class Machine implements Cloneable{
+
+	private final int ID;
+	//public Operation[] Queue;
+	public LinkedList<Operation> Queue;
+	public LinkedList<Operation> Op_executed;
+	public LinkedList<Operation> Op_executed_Optim;
+	public int time = 0;
+	public double[][] QValues;
+	public LinkedList<Operation> TempOrderedList;
+	public LinkedList<Operation> Op_assigned;
+	int minInitialM = 0;
+	
+	//amount of work so far
+	public int work=0;
+	
+	public Machine(int p_id) {
+		ID = p_id;
+		Queue = new LinkedList<Operation> ();
+		Op_executed = new LinkedList<Operation> ();
+		Op_executed_Optim = new LinkedList<Operation> ();
+		Op_assigned = new LinkedList<Operation> ();
+		TempOrderedList = new LinkedList<Operation> ();
+	}
+
+	@Override
+	 protected Machine clone() throws CloneNotSupportedException {
+		Machine MM = (Machine) super.clone();
+	    MM.Queue = new LinkedList<Operation>();
+	    MM.Queue = (LinkedList<Operation>) Queue.clone();
+		return MM;
+	 }
+
+	
+	public int GetID(){
+		return ID;
+	}
+	
+	public void PrintQueue(){
+		for (int q=0; q < Queue.size(); q++)
+			System.out.print("Job:" + Queue.get(q).GetJob()+"-Op:"+ Queue.get(q).GetID() +" 	");
+		System.out.println();
+	}
+	
+	
+	public void Locate_Op_OrderedList(Operation op){
+		boolean located = false;
+		int i=0;
+		while (!located){
+			// if the List is still empty or this value is higher than the highest so far, then add it
+			if ((TempOrderedList.isEmpty()) || (TempOrderedList.getLast().temp_end > op.temp_end)){  
+				TempOrderedList.add(op);
+				located = true;
+			}
+			else{
+				if (op.temp_end < TempOrderedList.get(i).temp_end)
+					i++;
+				else{
+					TempOrderedList.add(i, op);
+					located = true;
+				}
+			}
+		}
+	}
+	
+	
+	//Gets Lowest End Time for this machine
+	
+	public int GetLowestEndTime(Operation Oper, int j_end, int time_slot){
+		int minInitialJ, minGlobal, endTime=0;
+		boolean located = false;
+		
+		minInitialJ = j_end;
+		TempOrderedList.clear();
+		
+		for (int x=0; x < Op_assigned.size(); x++)
+			Locate_Op_OrderedList(Op_assigned.get(x));	
+		
+		minGlobal = (minInitialJ > minInitialM) ? minInitialJ : minInitialM;
+		
+		if ((TempOrderedList.isEmpty())||
+				((TempOrderedList.getFirst().temp_initial >= time_slot) && (TempOrderedList.getFirst().temp_initial >= minGlobal + time_slot))){
+			endTime = minGlobal + time_slot;
+			Oper.temp_initial = minGlobal;
+			Oper.temp_end = endTime;
+			located = true;
+		}
+		else{
+			for (int i=0; i < TempOrderedList.size()-1; i++){
+				  int aux = TempOrderedList.get(i+1).temp_initial - TempOrderedList.get(i).temp_end;
+				  minInitialM = TempOrderedList.get(i).temp_end;
+				  minGlobal = (minInitialJ > minInitialM) ? minInitialJ : minInitialM;
+				//si la dif entre en inicial de una y el final de la otra es de tama–o del slot necesario entonces devuelvo pos y tiempo inicial
+					//if (aux >= time_slot) {
+					if ((aux >= time_slot) && ((minGlobal+time_slot) <= TempOrderedList.get(i+1).temp_initial)){
+						//it fits here
+						endTime = minGlobal + time_slot;
+						Oper.temp_initial = minGlobal;
+						Oper.temp_end = endTime;
+						located = true;
+					}
+				}
+			}
+		
+		
+		if (!located){
+			minInitialM = TempOrderedList.getLast().temp_end;
+			minGlobal = (minInitialJ > minInitialM) ? minInitialJ : minInitialM;
+			endTime = minGlobal + time_slot;
+			Oper.temp_initial = minGlobal;
+			Oper.temp_end = endTime;
+		}
+		
+		minInitialM = endTime;
+		return endTime;
+		
+	}
+	
+	public static double roundToDecimals(double d, int c) {
+		int temp=(int)((d*Math.pow(10,c)));
+		return (((double)temp)/Math.pow(10,c));
+		}
+	
+	
+	public void PrintQValues(){
+		for(int q=0; q < QValues.length; q++){
+			for (int p=0; p< QValues[q].length; p++)
+			  System.out.print(QValues[q][p]+"	");
+			System.out.println();
+		}
+	}
+	
+
+	public void SaveQValues2File(PrintWriter pw){
+		for(int q=0; q < QValues.length; q++){
+			for (int p=0; p< QValues[q].length; p++)			
+			 // pw.print(QValues[q][p]+"		");
+				pw.print(roundToDecimals(QValues[q][p], 2)+"		");
+			pw.println();
+		}
+	}
+	
+	
+	
+	public double MaxQVQueue(){
+		double max =0;
+		if (!Queue.isEmpty()){
+		max = QValues[Queue.get(0).GetJob()][Queue.get(0).GetID()];
+		for(int x=1; x < Queue.size(); x++)
+			 if (QValues[Queue.get(x).GetJob()][Queue.get(x).GetID()] > max){
+				  	max = QValues[Queue.get(x).GetJob()][Queue.get(x).GetID()];
+				  }
+		}
+		return max;
+	}
+	
+	public double MinQVQueue(){
+		double min =0;
+		if (!Queue.isEmpty()){
+		min = QValues[Queue.get(0).GetJob()][Queue.get(0).GetID()];
+		for(int x=1; x < Queue.size(); x++)
+			 if (QValues[Queue.get(x).GetJob()][Queue.get(x).GetID()] < min){
+				  	min = QValues[Queue.get(x).GetJob()][Queue.get(x).GetID()];
+				  }
+		}
+		return min;
+	}
+	
+	public void PrintOrder(){
+		for (int q=0; q < Op_executed.size(); q++)
+			System.out.print("Job:" + Op_executed.get(q).GetJob()+"-Op:"+ Op_executed.get(q).GetID() +" 	");
+		System.out.println();
+	}
+	
+	
+//	public boolean MultipleChoices(){
+	public LinkedList<Operation> MultipleChoices(){
+		boolean choices = false;
+		LinkedList<Operation> Options = new LinkedList<Operation>();
+		
+		double max = QValues[Queue.get(0).GetJob()][Queue.get(0).GetID()];
+		Options.add(Queue.get(0));
+		for (int q=1; q < Queue.size(); q++) 
+		  if (QValues[Queue.get(q).GetJob()][Queue.get(q).GetID()] == max){
+			  choices = true;
+			  Options.add(Queue.get(q));
+		  }
+
+		return Options;
+	}
+	
+	public Operation ActionSelection(Job [] Jobs, double epsilon, double alpha, PrintWriter PW){
+
+		//Learning
+		Operation op = null;
+		
+		//Print the choices of the machine
+		PW.print("Machine " + ID + " choices:	");
+		for (int c=0; c < Queue.size(); c++)
+			PW.print("J"+Queue.get(c).GetJob() + "-O" + Queue.get(c).GetID() + ", QV: " + roundToDecimals(QValues[Queue.get(c).GetJob()][Queue.get(c).GetID()], 2) + "	 ");
+		
+		PW.println();
+		PW.flush();
+		
+		//Now print the QValues, or maybe somewhere closer to the corresponding action	
+		
+		double rnd = Math.random();
+		if (rnd < epsilon){	//Select a random machine
+			double rnd2 = Math.random();
+			int index = Math.abs((int) Math.round(rnd2 * (Queue.size()-1)));
+			op = Queue.get(index);
+			op.initial_time = (Jobs[op.GetJob()].j_end_time > time) ? Jobs[op.GetJob()].j_end_time : time;
+			time = op.initial_time + op.proc_time;
+			//time += op.proc_time;
+//			System.out.println("My choice, Machine "+ ID + " is operation " + op.GetID()+ " from Job " + op.GetJob());
+//			System.out.println("During "+ op.proc_time +" time steps, from "+ op.initial_time +" to "+ time);
+		}
+		
+		else { //Select the best action, SPT!! pero necesito saber las posibilidades para solo analizar esos Q_values!!!!!!
+			
+			double max = QValues[Queue.get(0).GetJob()][Queue.get(0).GetID()];
+			int index = 0;
+			for (int q=1; q < Queue.size(); q++) {
+			  if (QValues[Queue.get(q).GetJob()][Queue.get(q).GetID()] > max){
+			  	max = QValues[Queue.get(q).GetJob()][Queue.get(q).GetID()];
+			  	index = q;
+			  }
+
+
+			}
+			  	op = Queue.get(index); 
+			  	op.initial_time = (Jobs[op.GetJob()].j_end_time > time) ? Jobs[op.GetJob()].j_end_time : time;
+			  	time = op.initial_time + op.proc_time;
+			  	//time += op.proc_time;
+//				System.out.println("My choice, Machine "+ ID + " is operation " + op.GetID()+ " from Job " + op.GetJob());
+//				System.out.println("During "+ op.proc_time +" time steps, from "+ op.initial_time +" to "+ time);
+
+		//QValues[op.GetJob()][op.GetID()] += alpha * 1/op.proc_time ; 
+		
+		}	
+		//QValues[op.GetJob()][op.GetID()] += alpha * (1/op.proc_time - QValues[op.GetJob()][op.GetID()]); 
+		
+		//QValues[op.GetJob()][op.GetID()] += alpha * (1/op.proc_time); 
+		
+		//and print the QValues of the possible options 
+		//PrintQValues();
+		
+		//Print the action that was selected
+		
+		PW.print("Action selected J"+op.GetJob() + "-O" + op.GetID() + "	"); 
+		PW.println("From time " + op.initial_time + " to time " + op.end_time);
+		
+//		System.out.println();
+		
+		return op;
+
+		
+	}
+
+	
+}

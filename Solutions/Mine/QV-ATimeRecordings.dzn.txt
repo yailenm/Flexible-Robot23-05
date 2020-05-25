@@ -1,0 +1,63 @@
+Iteration 0
+Machine 0 choices:	
+Action selected J1-O0	From time 0 to time 0
+Machine 2 choices:	
+Action selected J0-O0	From time 0 to time 0
+Machine 0 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 30 to time 75
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 75 to time 38
+Machine 0 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 75 to time 115
+Machine 2 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 98 to time 67
+Machine 0 choices:	J1-O3, QV: 0.0	 
+Action selected J1-O3	From time 104 to time 150
+Machine 2 choices:	J0-O3, QV: 0.0	 
+Action selected J0-O3	From time 135 to time 98
+Machine 2 choices:	J1-O4, QV: 0.0	 J0-O4, QV: 0.0	 
+Action selected J1-O4	From time 166 to time 187
+Machine 2 choices:	J0-O4, QV: 0.0	 J1-O5, QV: 0.0	 
+Action selected J1-O5	From time 195 to time 234
+Machine 2 choices:	J0-O4, QV: 0.0	 J1-O6, QV: 0.0	 
+Action selected J0-O4	From time 226 to time 127
+Machine 2 choices:	J1-O6, QV: 0.0	 J0-O5, QV: 0.0	 
+Action selected J0-O5	From time 255 to time 158
+Machine 2 choices:	J1-O6, QV: 0.0	 J0-O6, QV: 0.0	 
+Action selected J1-O6	From time 286 to time 276
+Machine 2 choices:	J0-O6, QV: 0.0	 J1-O7, QV: 0.0	 
+Action selected J1-O7	From time 302 to time 302
+Machine 1 choices:	
+Action selected J1-O8	From time 0 to time 325
+Machine 2 choices:	J0-O6, QV: 0.0	 
+Action selected J0-O6	From time 328 to time 203
+Machine 1 choices:	J1-O9, QV: 0.0	 
+Action selected J1-O9	From time 328 to time 355
+Machine 2 choices:	J0-O7, QV: 0.0	 
+Action selected J0-O7	From time 344 to time 260
+Machine 1 choices:	J0-O8, QV: 0.0	 
+Action selected J0-O8	From time 358 to time 275
+Machine 2 choices:	J1-O10, QV: 0.0	 
+Action selected J1-O10	From time 370 to time 364
+Machine 1 choices:	J0-O9, QV: 0.0	 
+Action selected J0-O9	From time 382 to time 310
+Machine 1 choices:	J1-O11, QV: 0.0	 
+Action selected J1-O11	From time 400 to time 394
+Machine 2 choices:	J0-O10, QV: 0.0	 
+Action selected J0-O10	From time 400 to time 319
+Machine 0 choices:	J0-O11, QV: 0.0	 
+Action selected J0-O11	From time 400 to time 349
+Machine 1 choices:	J1-O12, QV: 0.0	 
+Action selected J1-O12	From time 430 to time 424
+Machine 0 choices:	J0-O12, QV: 0.0	 
+Action selected J0-O12	From time 430 to time 379
+Machine 2 choices:	J1-O13, QV: 0.0	 
+Action selected J1-O13	From time 460 to time 454
+Machine 2 choices:	J0-O13, QV: 0.0	 J1-O14, QV: 0.0	 
+Action selected J1-O14	From time 490 to time 464
+Machine 2 choices:	J0-O13, QV: 0.0	 
+Action selected J0-O13	From time 500 to time 409
+Machine 2 choices:	J0-O14, QV: 0.0	 
+Action selected J0-O14	From time 530 to time 419
+makespan-iteration 0: 540
+

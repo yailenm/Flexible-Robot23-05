@@ -1,0 +1,28 @@
+Iteration 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J1-O0, QV: 0.0	 
+Action selected J0-O0	From time 0 to time 35
+Machine 0 choices:	J1-O0, QV: 0.0	 
+Action selected J1-O0	From time 10 to time 10
+Machine 1 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 10 to time 52
+Machine 0 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 20 to time 50
+Machine 1 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 45 to time 68
+makespan-iteration 0: 60
+
+MkY2.fjs
+60
+Final Schedule
+0	0	0	0	0
+0	1	1	0	0
+1	0	0	0	0
+1	1	0	0	0
+1	2	1	0	0
+Final Q-Values 
+0.01		0.0		0.0		
+0.01		0.0		0.0		
+0.0		0.0		0.0		
+0.0		0.0		0.0		
+0.0		0.0		0.0		
+0.0		0.0		0.0		

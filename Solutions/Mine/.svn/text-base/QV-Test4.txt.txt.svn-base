@@ -1,0 +1,994 @@
+Iteration 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J1-O0, QV: 0.0	 J2-O0, QV: 0.0	 J3-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J0-O0	From time 0 to time 128
+Machine 0 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.0	 J3-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J1-O0	From time 64 to time 64
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 64 to time 640
+Machine 0 choices:	J2-O0, QV: 0.0	 J3-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J2-O0	From time 128 to time 168
+Machine 2 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 296 to time 232
+Machine 8 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 296 to time 696
+Machine 0 choices:	J3-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J3-O0	From time 152 to time 144
+Machine 2 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 528 to time 312
+Machine 8 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 528 to time 288
+Machine 11 choices:	J0-O3, QV: 0.0	 
+Action selected J0-O3	From time 352 to time 728
+Machine 0 choices:	J4-O0, QV: 0.0	 J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J4-O0	From time 192 to time 104
+Machine 2 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 592 to time 288
+Machine 9 choices:	J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 592 to time 344
+Machine 11 choices:	J1-O3, QV: 0.0	 
+Action selected J1-O3	From time 584 to time 320
+Machine 0 choices:	J5-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J5-O0	From time 232 to time 104
+Machine 2 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 736 to time 248
+Machine 8 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 736 to time 336
+Machine 11 choices:	J2-O3, QV: 0.0	 
+Action selected J2-O3	From time 624 to time 360
+Machine 0 choices:	J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J6-O0	From time 272 to time 208
+Machine 2 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 880 to time 248
+Machine 9 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 880 to time 296
+Machine 11 choices:	J3-O3, QV: 0.0	 
+Action selected J3-O3	From time 784 to time 32
+Machine 0 choices:	J7-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J7-O0	From time 312 to time 168
+Machine 2 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 1024 to time 456
+Machine 8 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 1024 to time 336
+Machine 11 choices:	J4-O3, QV: 0.0	 
+Action selected J4-O3	From time 928 to time 328
+Machine 0 choices:	J8-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J8-O0	From time 352 to time 248
+Machine 2 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 1168 to time 800
+Machine 8 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 1168 to time 504
+Machine 11 choices:	J5-O3, QV: 0.0	 
+Action selected J5-O3	From time 1072 to time 368
+Machine 0 choices:	J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 392 to time 104
+Machine 2 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 1328 to time 408
+Machine 10 choices:	J7-O2, QV: 0.0	 
+Action selected J7-O2	From time 1328 to time 32
+Machine 11 choices:	J6-O3, QV: 0.0	 
+Action selected J6-O3	From time 1216 to time 32
+Machine 2 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 1488 to time 160
+Machine 8 choices:	J8-O2, QV: 0.0	 
+Action selected J8-O2	From time 1488 to time 440
+Machine 11 choices:	J7-O3, QV: 0.0	 
+Action selected J7-O3	From time 1360 to time 48
+Machine 9 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 1648 to time 32
+Machine 11 choices:	J8-O3, QV: 0.0	 
+Action selected J8-O3	From time 1520 to time 16
+Machine 11 choices:	J9-O3, QV: 0.0	 
+Action selected J9-O3	From time 1680 to time 48
+makespan-iteration 0: 1696
+
+Iteration 1
+Machine 0 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.0	 J3-O0, QV: 0.0	 J5-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J3-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J4-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.0	 J5-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J5-O0	From time 40 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J6-O0	From time 40 to time 0
+Machine 4 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 40 to time 0
+Machine 5 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 40 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J2-O0	From time 80 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J1-O0	From time 80 to time 0
+Machine 4 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 184 to time 0
+Machine 6 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 80 to time 0
+Machine 8 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 184 to time 0
+Machine 9 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 184 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J0-O0	From time 104 to time 0
+Machine 1 choices:	J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J7-O0	From time 144 to time 0
+Machine 3 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 144 to time 0
+Machine 5 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 184 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 328 to time 0
+Machine 10 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 224 to time 0
+Machine 11 choices:	J3-O3, QV: 0.0	 J4-O3, QV: 0.0	 
+Action selected J3-O3	From time 232 to time 0
+Machine 0 choices:	J8-O0, QV: 0.0	 
+Action selected J8-O0	From time 168 to time 0
+Machine 1 choices:	J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 184 to time 0
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 168 to time 0
+Machine 6 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 224 to time 0
+Machine 9 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 376 to time 0
+Machine 10 choices:	J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 272 to time 0
+Machine 11 choices:	J4-O3, QV: 0.0	 J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 
+Action selected J4-O3	From time 264 to time 0
+Machine 2 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 400 to time 0
+Machine 3 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 376 to time 0
+Machine 8 choices:	J0-O2, QV: 0.0	 J7-O2, QV: 0.0	 
+Action selected J7-O2	From time 384 to time 0
+Machine 11 choices:	J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J2-O3, QV: 0.01	 
+Action selected J2-O3	From time 304 to time 0
+Machine 8 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 416 to time 0
+Machine 9 choices:	J8-O2, QV: 0.0	 
+Action selected J8-O2	From time 560 to time 0
+Machine 10 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 536 to time 0
+Machine 11 choices:	J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J7-O3, QV: 0.01	 
+Action selected J7-O3	From time 416 to time 0
+Machine 11 choices:	J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J0-O3, QV: 0.0	 J8-O3, QV: 0.01	 J9-O3, QV: 0.01	 
+Action selected J8-O3	From time 592 to time 0
+Machine 11 choices:	J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J0-O3, QV: 0.0	 J9-O3, QV: 0.01	 
+Action selected J9-O3	From time 608 to time 0
+Machine 11 choices:	J6-O3, QV: 0.0	 J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J0-O3, QV: 0.0	 
+Action selected J6-O3	From time 624 to time 0
+Machine 11 choices:	J5-O3, QV: 0.0	 J1-O3, QV: 0.0	 J0-O3, QV: 0.0	 
+Action selected J5-O3	From time 656 to time 0
+Machine 11 choices:	J1-O3, QV: 0.0	 J0-O3, QV: 0.0	 
+Action selected J1-O3	From time 688 to time 0
+Machine 11 choices:	J0-O3, QV: 0.0	 
+Action selected J0-O3	From time 720 to time 0
+makespan-iteration 1: 752
+
+Iteration 2
+Machine 0 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.01	 J3-O0, QV: 0.01	 J5-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J2-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J6-O0, QV: 0.01	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J4-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.01	 J5-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J3-O0	From time 24 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J6-O0, QV: 0.01	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J6-O0	From time 40 to time 0
+Machine 3 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 40 to time 0
+Machine 6 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J5-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J8-O0	From time 64 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J7-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J7-O0	From time 80 to time 0
+Machine 2 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 64 to time 0
+Machine 5 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 80 to time 0
+Machine 9 choices:	J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 88 to time 0
+Machine 10 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 184 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J5-O0, QV: 0.01	 
+Action selected J5-O0	From time 104 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J1-O0	From time 120 to time 0
+Machine 3 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 184 to time 0
+Machine 4 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 104 to time 0
+Machine 8 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 208 to time 0
+Machine 9 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 224 to time 0
+Machine 11 choices:	J2-O3, QV: 0.02	 J4-O3, QV: 0.01	 
+Action selected J2-O3	From time 120 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 
+Action selected J0-O0	From time 144 to time 0
+Machine 1 choices:	J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 184 to time 0
+Machine 4 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 264 to time 0
+Machine 6 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 184 to time 0
+Machine 8 choices:	J7-O2, QV: 0.01	 J8-O2, QV: 0.0	 
+Action selected J8-O2	From time 264 to time 0
+Machine 11 choices:	J4-O3, QV: 0.01	 J3-O3, QV: 0.01	 J6-O3, QV: 0.01	 
+Action selected J4-O3	From time 232 to time 0
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 208 to time 0
+Machine 5 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 224 to time 0
+Machine 8 choices:	J7-O2, QV: 0.01	 J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 408 to time 0
+Machine 9 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 416 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J6-O3, QV: 0.01	 J8-O3, QV: 0.02	 
+Action selected J8-O3	From time 296 to time 0
+Machine 8 choices:	J7-O2, QV: 0.01	 J0-O2, QV: 0.0	 
+Action selected J7-O2	From time 456 to time 0
+Machine 10 choices:	J9-O2, QV: 0.01	 
+Action selected J9-O2	From time 384 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J6-O3, QV: 0.01	 J5-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J3-O3	From time 312 to time 0
+Machine 8 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 488 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J5-O3, QV: 0.01	 J1-O3, QV: 0.01	 J7-O3, QV: 0.02	 J9-O3, QV: 0.02	 
+Action selected J7-O3	From time 488 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J5-O3, QV: 0.01	 J1-O3, QV: 0.01	 J9-O3, QV: 0.02	 J0-O3, QV: 0.01	 
+Action selected J9-O3	From time 504 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J5-O3, QV: 0.01	 J1-O3, QV: 0.01	 J0-O3, QV: 0.01	 
+Action selected J6-O3	From time 520 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J1-O3, QV: 0.01	 J0-O3, QV: 0.01	 
+Action selected J5-O3	From time 552 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J0-O3, QV: 0.01	 
+Action selected J1-O3	From time 584 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 
+Action selected J0-O3	From time 616 to time 0
+makespan-iteration 2: 648
+
+Iteration 3
+Machine 0 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.01	 J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 
+Action selected J2-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J3-O0, QV: 0.0	 J5-O0, QV: 0.0	 J8-O0, QV: 0.0	 J9-O0, QV: 0.01	 
+Action selected J9-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 
+Action selected J0-O0	From time 24 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J3-O0, QV: 0.0	 J5-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J1-O0	From time 40 to time 0
+Machine 3 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 40 to time 0
+Machine 6 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 0 choices:	J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 
+Action selected J4-O0	From time 88 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 J5-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J8-O0	From time 104 to time 0
+Machine 2 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 104 to time 0
+Machine 4 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 88 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 88 to time 0
+Machine 0 choices:	J6-O0, QV: 0.0	 J7-O0, QV: 0.0	 
+Action selected J7-O0	From time 128 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 J5-O0, QV: 0.0	 
+Action selected J3-O0	From time 144 to time 0
+Machine 2 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 336 to time 0
+Machine 5 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 144 to time 0
+Machine 8 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 320 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 336 to time 0
+Machine 11 choices:	J2-O3, QV: 0.02	 
+Action selected J2-O3	From time 120 to time 0
+Machine 0 choices:	J6-O0, QV: 0.0	 
+Action selected J6-O0	From time 168 to time 0
+Machine 1 choices:	J5-O0, QV: 0.0	 
+Action selected J5-O0	From time 184 to time 0
+Machine 3 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 200 to time 0
+Machine 6 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 168 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 J8-O2, QV: 0.0	 
+Action selected J8-O2	From time 376 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 392 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J0-O3	From time 376 to time 0
+Machine 4 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 320 to time 0
+Machine 5 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 304 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 J7-O2, QV: 0.01	 
+Action selected J7-O2	From time 408 to time 0
+Machine 10 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 344 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J8-O3, QV: 0.02	 J9-O3, QV: 0.02	 
+Action selected J8-O3	From time 408 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 448 to time 0
+Machine 9 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 464 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J9-O3, QV: 0.02	 J7-O3, QV: 0.02	 J3-O3, QV: 0.01	 
+Action selected J9-O3	From time 424 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 496 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J7-O3, QV: 0.02	 J3-O3, QV: 0.01	 J5-O3, QV: 0.01	 J6-O3, QV: 0.01	 
+Action selected J3-O3	From time 440 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J7-O3, QV: 0.02	 J5-O3, QV: 0.01	 J6-O3, QV: 0.01	 J4-O3, QV: 0.01	 
+Action selected J7-O3	From time 472 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J5-O3, QV: 0.01	 J6-O3, QV: 0.01	 J4-O3, QV: 0.01	 
+Action selected J1-O3	From time 488 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J6-O3, QV: 0.01	 J4-O3, QV: 0.01	 
+Action selected J5-O3	From time 520 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J4-O3, QV: 0.01	 
+Action selected J6-O3	From time 552 to time 0
+Machine 11 choices:	J4-O3, QV: 0.01	 
+Action selected J4-O3	From time 584 to time 0
+makespan-iteration 3: 616
+
+Iteration 4
+Machine 0 choices:	J1-O0, QV: 0.0	 J3-O0, QV: 0.01	 J4-O0, QV: 0.0	 J5-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J3-O0	From time 0 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.0	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J6-O0	From time 0 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J5-O0	From time 40 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.0	 J7-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J2-O0	From time 40 to time 0
+Machine 2 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 40 to time 0
+Machine 5 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 40 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J4-O0	From time 80 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J7-O0, QV: 0.01	 J8-O0, QV: 0.0	 
+Action selected J7-O0	From time 64 to time 0
+Machine 5 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 184 to time 0
+Machine 6 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 80 to time 0
+Machine 9 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 184 to time 0
+Machine 10 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 184 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 120 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J8-O0, QV: 0.0	 
+Action selected J8-O0	From time 104 to time 0
+Machine 4 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 104 to time 0
+Machine 5 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 248 to time 0
+Machine 8 choices:	J2-O2, QV: 0.0	 J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 224 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J3-O3, QV: 0.01	 
+Action selected J6-O3	From time 232 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 
+Action selected J1-O0	From time 160 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 
+Action selected J0-O0	From time 144 to time 0
+Machine 4 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 264 to time 0
+Machine 6 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 224 to time 0
+Machine 8 choices:	J2-O2, QV: 0.0	 J7-O2, QV: 0.01	 
+Action selected J7-O2	From time 272 to time 0
+Machine 10 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 392 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J5-O3, QV: 0.01	 
+Action selected J3-O3	From time 264 to time 0
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 208 to time 0
+Machine 3 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 224 to time 0
+Machine 8 choices:	J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 304 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 J8-O2, QV: 0.01	 
+Action selected J8-O2	From time 384 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J7-O3, QV: 0.03	 J4-O3, QV: 0.01	 
+Action selected J7-O3	From time 304 to time 0
+Machine 8 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 440 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 456 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J4-O3, QV: 0.01	 J2-O3, QV: 0.03	 J8-O3, QV: 0.03	 
+Action selected J2-O3	From time 336 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 512 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J4-O3, QV: 0.01	 J8-O3, QV: 0.03	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J8-O3	From time 416 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J4-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 J9-O3, QV: 0.03	 
+Action selected J9-O3	From time 544 to time 0
+Machine 11 choices:	J5-O3, QV: 0.01	 J4-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J5-O3	From time 560 to time 0
+Machine 11 choices:	J4-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J4-O3	From time 592 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J0-O3	From time 624 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 
+Action selected J1-O3	From time 656 to time 0
+makespan-iteration 4: 688
+
+Iteration 5
+Machine 0 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.01	 J4-O0, QV: 0.0	 J5-O0, QV: 0.01	 J8-O0, QV: 0.01	 
+Action selected J3-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J6-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.01	 J8-O0, QV: 0.01	 
+Action selected J5-O0	From time 40 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J9-O0	From time 40 to time 0
+Machine 2 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 40 to time 0
+Machine 3 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 40 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J4-O0	From time 80 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J7-O0	From time 80 to time 0
+Machine 3 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 184 to time 0
+Machine 4 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 80 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 184 to time 0
+Machine 9 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 184 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J8-O0	From time 120 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 
+Action selected J2-O0	From time 120 to time 0
+Machine 5 choices:	J4-O1, QV: 0.0	 J7-O1, QV: 0.0	 
+Action selected J4-O1	From time 120 to time 0
+Machine 9 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 344 to time 0
+Machine 10 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 224 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 J3-O3, QV: 0.01	 
+Action selected J6-O3	From time 232 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 
+Action selected J0-O0	From time 160 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 
+Action selected J1-O0	From time 144 to time 0
+Machine 5 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 264 to time 0
+Machine 6 choices:	J8-O1, QV: 0.0	 J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 144 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 264 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J9-O3, QV: 0.03	 J5-O3, QV: 0.01	 
+Action selected J9-O3	From time 376 to time 0
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 224 to time 0
+Machine 4 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 224 to time 0
+Machine 6 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 208 to time 0
+Machine 8 choices:	J7-O2, QV: 0.01	 
+Action selected J7-O2	From time 424 to time 0
+Machine 10 choices:	J2-O2, QV: 0.01	 
+Action selected J2-O2	From time 272 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J5-O3, QV: 0.01	 J4-O3, QV: 0.01	 
+Action selected J4-O3	From time 392 to time 0
+Machine 8 choices:	J1-O2, QV: 0.0	 J8-O2, QV: 0.01	 
+Action selected J8-O2	From time 456 to time 0
+Machine 9 choices:	J0-O2, QV: 0.0	 
+Action selected J0-O2	From time 456 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J5-O3, QV: 0.01	 J7-O3, QV: 0.03	 J2-O3, QV: 0.03	 
+Action selected J7-O3	From time 456 to time 0
+Machine 8 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 488 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J5-O3, QV: 0.01	 J2-O3, QV: 0.03	 J8-O3, QV: 0.03	 J0-O3, QV: 0.01	 
+Action selected J5-O3	From time 472 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J2-O3, QV: 0.03	 J8-O3, QV: 0.03	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J2-O3	From time 504 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J8-O3, QV: 0.03	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J8-O3	From time 520 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J3-O3	From time 536 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J0-O3	From time 568 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 
+Action selected J1-O3	From time 600 to time 0
+makespan-iteration 5: 632
+
+Iteration 6
+Machine 0 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.01	 J5-O0, QV: 0.01	 J8-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J5-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 J4-O0, QV: 0.01	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J2-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.01	 J8-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J3-O0	From time 40 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J6-O0	From time 24 to time 0
+Machine 4 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 40 to time 0
+Machine 6 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J8-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J8-O0	From time 80 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J7-O0	From time 64 to time 0
+Machine 2 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 80 to time 0
+Machine 3 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 64 to time 0
+Machine 9 choices:	J2-O2, QV: 0.01	 
+Action selected J2-O2	From time 88 to time 0
+Machine 10 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 184 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J0-O0	From time 120 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 
+Action selected J4-O0	From time 104 to time 0
+Machine 2 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 224 to time 0
+Machine 5 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 120 to time 0
+Machine 8 choices:	J3-O2, QV: 0.0	 J6-O2, QV: 0.0	 
+Action selected J3-O2	From time 224 to time 0
+Machine 11 choices:	J2-O3, QV: 0.03	 J5-O3, QV: 0.01	 
+Action selected J5-O3	From time 232 to time 0
+Machine 0 choices:	J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 184 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 
+Action selected J1-O0	From time 144 to time 0
+Machine 3 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 208 to time 0
+Machine 5 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 280 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 J7-O2, QV: 0.01	 J8-O2, QV: 0.01	 
+Action selected J7-O2	From time 384 to time 0
+Machine 11 choices:	J2-O3, QV: 0.03	 J3-O3, QV: 0.01	 
+Action selected J2-O3	From time 264 to time 0
+Machine 4 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 208 to time 0
+Machine 6 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 224 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 J8-O2, QV: 0.01	 J0-O2, QV: 0.01	 
+Action selected J8-O2	From time 416 to time 0
+Machine 9 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 424 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J7-O3, QV: 0.03	 
+Action selected J7-O3	From time 416 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 J0-O2, QV: 0.01	 J9-O2, QV: 0.0	 
+Action selected J0-O2	From time 448 to time 0
+Machine 9 choices:	J1-O2, QV: 0.01	 
+Action selected J1-O2	From time 472 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J8-O3, QV: 0.03	 J4-O3, QV: 0.01	 
+Action selected J8-O3	From time 448 to time 0
+Machine 8 choices:	J6-O2, QV: 0.0	 J9-O2, QV: 0.0	 
+Action selected J6-O2	From time 504 to time 0
+Machine 11 choices:	J3-O3, QV: 0.01	 J4-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 
+Action selected J3-O3	From time 464 to time 0
+Machine 8 choices:	J9-O2, QV: 0.0	 
+Action selected J9-O2	From time 552 to time 0
+Machine 11 choices:	J4-O3, QV: 0.01	 J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 J6-O3, QV: 0.01	 
+Action selected J4-O3	From time 496 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 J6-O3, QV: 0.01	 J9-O3, QV: 0.03	 
+Action selected J9-O3	From time 584 to time 0
+Machine 11 choices:	J0-O3, QV: 0.01	 J1-O3, QV: 0.01	 J6-O3, QV: 0.01	 
+Action selected J0-O3	From time 600 to time 0
+Machine 11 choices:	J1-O3, QV: 0.01	 J6-O3, QV: 0.01	 
+Action selected J1-O3	From time 632 to time 0
+Machine 11 choices:	J6-O3, QV: 0.01	 
+Action selected J6-O3	From time 664 to time 0
+makespan-iteration 6: 696
+
+Iteration 7
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J5-O0, QV: 0.01	 J6-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J5-O0	From time 0 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J2-O0, QV: 0.01	 J3-O0, QV: 0.0	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J2-O0	From time 0 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J8-O0	From time 40 to time 0
+Machine 1 choices:	J1-O0, QV: 0.0	 J3-O0, QV: 0.0	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J1-O0	From time 24 to time 0
+Machine 2 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 40 to time 0
+Machine 5 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 0 choices:	J0-O0, QV: 0.0	 J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 
+Action selected J0-O0	From time 80 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J7-O0	From time 88 to time 0
+Machine 2 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 184 to time 0
+Machine 4 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 80 to time 0
+Machine 8 choices:	J5-O2, QV: 0.0	 J2-O2, QV: 0.0	 
+Action selected J5-O2	From time 184 to time 0
+Machine 0 choices:	J4-O0, QV: 0.0	 J6-O0, QV: 0.0	 
+Action selected J4-O0	From time 144 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 J9-O0, QV: 0.01	 
+Action selected J9-O0	From time 128 to time 0
+Machine 5 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 144 to time 0
+Machine 6 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 128 to time 0
+Machine 8 choices:	J2-O2, QV: 0.0	 
+Action selected J2-O2	From time 232 to time 0
+Machine 9 choices:	J8-O2, QV: 0.01	 
+Action selected J8-O2	From time 240 to time 0
+Machine 10 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 416 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 
+Action selected J5-O3	From time 232 to time 0
+Machine 0 choices:	J6-O0, QV: 0.0	 
+Action selected J6-O0	From time 184 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 
+Action selected J3-O0	From time 168 to time 0
+Machine 3 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 184 to time 0
+Machine 4 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 240 to time 0
+Machine 8 choices:	J0-O2, QV: 0.01	 J7-O2, QV: 0.02	 
+Action selected J0-O2	From time 376 to time 0
+Machine 11 choices:	J2-O3, QV: 0.04	 J8-O3, QV: 0.04	 J1-O3, QV: 0.02	 
+Action selected J2-O3	From time 264 to time 0
+Machine 3 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 328 to time 0
+Machine 6 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 288 to time 0
+Machine 8 choices:	J7-O2, QV: 0.02	 J4-O2, QV: 0.0	 
+Action selected J7-O2	From time 432 to time 0
+Machine 9 choices:	J9-O2, QV: 0.01	 
+Action selected J9-O2	From time 400 to time 0
+Machine 11 choices:	J8-O3, QV: 0.04	 J1-O3, QV: 0.02	 J0-O3, QV: 0.02	 
+Action selected J8-O3	From time 280 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 J6-O2, QV: 0.0	 
+Action selected J6-O2	From time 464 to time 0
+Machine 9 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 472 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J0-O3, QV: 0.02	 J7-O3, QV: 0.04	 J9-O3, QV: 0.04	 
+Action selected J7-O3	From time 464 to time 0
+Machine 8 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 512 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J0-O3, QV: 0.02	 J9-O3, QV: 0.04	 J6-O3, QV: 0.02	 J3-O3, QV: 0.02	 
+Action selected J9-O3	From time 480 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J0-O3, QV: 0.02	 J6-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J1-O3	From time 496 to time 0
+Machine 11 choices:	J0-O3, QV: 0.02	 J6-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J0-O3	From time 528 to time 0
+Machine 11 choices:	J6-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J6-O3	From time 560 to time 0
+Machine 11 choices:	J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J3-O3	From time 592 to time 0
+Machine 11 choices:	J4-O3, QV: 0.02	 
+Action selected J4-O3	From time 624 to time 0
+makespan-iteration 7: 656
+
+Iteration 8
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J5-O0, QV: 0.01	 J6-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J1-O0	From time 0 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.01	 J3-O0, QV: 0.0	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J2-O0	From time 0 to time 0
+Machine 0 choices:	J4-O0, QV: 0.01	 J5-O0, QV: 0.01	 J6-O0, QV: 0.0	 J8-O0, QV: 0.01	 
+Action selected J6-O0	From time 64 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 J7-O0, QV: 0.01	 J9-O0, QV: 0.01	 
+Action selected J7-O0	From time 24 to time 0
+Machine 3 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 5 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 64 to time 0
+Machine 0 choices:	J4-O0, QV: 0.01	 J5-O0, QV: 0.01	 J8-O0, QV: 0.01	 
+Action selected J5-O0	From time 104 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 J9-O0, QV: 0.01	 
+Action selected J9-O0	From time 64 to time 0
+Machine 4 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 104 to time 0
+Machine 6 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 64 to time 0
+Machine 8 choices:	J2-O2, QV: 0.0	 J1-O2, QV: 0.0	 
+Action selected J2-O2	From time 88 to time 0
+Machine 0 choices:	J4-O0, QV: 0.01	 J8-O0, QV: 0.01	 
+Action selected J4-O0	From time 144 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 
+Action selected J0-O0	From time 104 to time 0
+Machine 2 choices:	J5-O1, QV: 0.0	 J9-O1, QV: 0.0	 
+Action selected J5-O1	From time 144 to time 0
+Machine 8 choices:	J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 296 to time 0
+Machine 9 choices:	J6-O2, QV: 0.0	 J7-O2, QV: 0.0	 
+Action selected J6-O2	From time 248 to time 0
+Machine 11 choices:	J2-O3, QV: 0.04	 
+Action selected J2-O3	From time 120 to time 0
+Machine 0 choices:	J8-O0, QV: 0.01	 
+Action selected J8-O0	From time 184 to time 0
+Machine 1 choices:	J3-O0, QV: 0.0	 
+Action selected J3-O0	From time 168 to time 0
+Machine 2 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 288 to time 0
+Machine 3 choices:	J4-O1, QV: 0.0	 J0-O1, QV: 0.0	 
+Action selected J4-O1	From time 184 to time 0
+Machine 8 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 352 to time 0
+Machine 9 choices:	J7-O2, QV: 0.0	 
+Action selected J7-O2	From time 296 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J6-O3, QV: 0.02	 
+Action selected J6-O3	From time 296 to time 0
+Machine 3 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 328 to time 0
+Machine 4 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 248 to time 0
+Machine 6 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 224 to time 0
+Machine 9 choices:	J9-O2, QV: 0.01	 J4-O2, QV: 0.0	 
+Action selected J9-O2	From time 448 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J5-O3, QV: 0.02	 J7-O3, QV: 0.04	 
+Action selected J7-O3	From time 328 to time 0
+Machine 8 choices:	J0-O2, QV: 0.01	 J3-O2, QV: 0.01	 
+Action selected J0-O2	From time 560 to time 0
+Machine 9 choices:	J4-O2, QV: 0.0	 J8-O2, QV: 0.01	 
+Action selected J8-O2	From time 480 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J5-O3, QV: 0.02	 J9-O3, QV: 0.04	 
+Action selected J9-O3	From time 480 to time 0
+Machine 8 choices:	J3-O2, QV: 0.01	 
+Action selected J3-O2	From time 616 to time 0
+Machine 9 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 512 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J5-O3, QV: 0.02	 J0-O3, QV: 0.02	 J8-O3, QV: 0.04	 
+Action selected J8-O3	From time 512 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 J5-O3, QV: 0.02	 J0-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J1-O3	From time 528 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 J0-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J5-O3	From time 560 to time 0
+Machine 11 choices:	J0-O3, QV: 0.02	 J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J0-O3	From time 616 to time 0
+Machine 11 choices:	J3-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J3-O3	From time 664 to time 0
+Machine 11 choices:	J4-O3, QV: 0.02	 
+Action selected J4-O3	From time 696 to time 0
+makespan-iteration 8: 728
+
+Iteration 9
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J5-O0, QV: 0.01	 J8-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J5-O0	From time 0 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J2-O0, QV: 0.02	 J3-O0, QV: 0.0	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J2-O0	From time 0 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J8-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J8-O0	From time 40 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 J6-O0, QV: 0.01	 J7-O0, QV: 0.01	 
+Action selected J7-O0	From time 24 to time 0
+Machine 5 choices:	J2-O1, QV: 0.0	 
+Action selected J2-O1	From time 24 to time 0
+Machine 6 choices:	J5-O1, QV: 0.0	 
+Action selected J5-O1	From time 40 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J4-O0, QV: 0.01	 J9-O0, QV: 0.0	 
+Action selected J4-O0	From time 80 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 J6-O0, QV: 0.01	 
+Action selected J6-O0	From time 64 to time 0
+Machine 2 choices:	J7-O1, QV: 0.0	 
+Action selected J7-O1	From time 64 to time 0
+Machine 3 choices:	J8-O1, QV: 0.0	 
+Action selected J8-O1	From time 80 to time 0
+Machine 8 choices:	J2-O2, QV: 0.01	 
+Action selected J2-O2	From time 88 to time 0
+Machine 10 choices:	J5-O2, QV: 0.0	 
+Action selected J5-O2	From time 184 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 J9-O0, QV: 0.0	 
+Action selected J9-O0	From time 120 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 J3-O0, QV: 0.0	 
+Action selected J3-O0	From time 104 to time 0
+Machine 3 choices:	J6-O1, QV: 0.0	 
+Action selected J6-O1	From time 240 to time 0
+Machine 4 choices:	J4-O1, QV: 0.0	 
+Action selected J4-O1	From time 120 to time 0
+Machine 8 choices:	J8-O2, QV: 0.01	 
+Action selected J8-O2	From time 240 to time 0
+Machine 9 choices:	J7-O2, QV: 0.0	 
+Action selected J7-O2	From time 224 to time 0
+Machine 11 choices:	J2-O3, QV: 0.04	 J5-O3, QV: 0.02	 
+Action selected J2-O3	From time 120 to time 0
+Machine 0 choices:	J1-O0, QV: 0.0	 
+Action selected J1-O0	From time 160 to time 0
+Machine 1 choices:	J0-O0, QV: 0.0	 
+Action selected J0-O0	From time 144 to time 0
+Machine 5 choices:	J9-O1, QV: 0.0	 
+Action selected J9-O1	From time 160 to time 0
+Machine 6 choices:	J3-O1, QV: 0.0	 
+Action selected J3-O1	From time 184 to time 0
+Machine 8 choices:	J6-O2, QV: 0.01	 
+Action selected J6-O2	From time 384 to time 0
+Machine 10 choices:	J4-O2, QV: 0.0	 
+Action selected J4-O2	From time 264 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 J8-O3, QV: 0.04	 J7-O3, QV: 0.04	 
+Action selected J8-O3	From time 272 to time 0
+Machine 2 choices:	J0-O1, QV: 0.0	 
+Action selected J0-O1	From time 224 to time 0
+Machine 4 choices:	J1-O1, QV: 0.0	 
+Action selected J1-O1	From time 264 to time 0
+Machine 9 choices:	J9-O2, QV: 0.01	 J3-O2, QV: 0.0	 
+Action selected J9-O2	From time 320 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 J7-O3, QV: 0.04	 J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 
+Action selected J7-O3	From time 288 to time 0
+Machine 8 choices:	J0-O2, QV: 0.01	 J1-O2, QV: 0.0	 
+Action selected J1-O2	From time 496 to time 0
+Machine 9 choices:	J3-O2, QV: 0.0	 
+Action selected J3-O2	From time 352 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 J9-O3, QV: 0.04	 
+Action selected J9-O3	From time 352 to time 0
+Machine 8 choices:	J0-O2, QV: 0.01	 
+Action selected J0-O2	From time 552 to time 0
+Machine 11 choices:	J5-O3, QV: 0.02	 J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 J1-O3, QV: 0.02	 J3-O3, QV: 0.02	 
+Action selected J5-O3	From time 368 to time 0
+Machine 11 choices:	J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 J1-O3, QV: 0.02	 J3-O3, QV: 0.02	 J0-O3, QV: 0.02	 
+Action selected J0-O3	From time 608 to time 0
+Machine 11 choices:	J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 J1-O3, QV: 0.02	 J3-O3, QV: 0.02	 
+Action selected J3-O3	From time 640 to time 0
+Machine 11 choices:	J6-O3, QV: 0.02	 J4-O3, QV: 0.02	 J1-O3, QV: 0.02	 
+Action selected J6-O3	From time 672 to time 0
+Machine 11 choices:	J4-O3, QV: 0.02	 J1-O3, QV: 0.02	 
+Action selected J4-O3	From time 704 to time 0
+Machine 11 choices:	J1-O3, QV: 0.02	 
+Action selected J1-O3	From time 736 to time 0
+makespan-iteration 9: 768
+
+Test4.txt
+520
+Final Schedule
+0	0	0	0	0
+0	1	3	0	0
+0	2	9	0	0
+0	3	11	0	0
+1	0	1	0	0
+1	1	4	0	0
+1	2	8	0	0
+1	3	11	0	0
+2	0	0	0	0
+2	1	3	0	0
+2	2	8	0	0
+2	3	11	0	0
+3	0	0	0	0
+3	1	5	0	0
+3	2	10	0	0
+3	3	11	0	0
+4	0	1	0	0
+4	1	6	0	0
+4	2	10	0	0
+4	3	11	0	0
+5	0	0	0	0
+5	1	2	0	0
+5	2	8	0	0
+5	3	11	0	0
+6	0	0	0	0
+6	1	6	0	0
+6	2	8	0	0
+6	3	11	0	0
+7	0	1	0	0
+7	1	5	0	0
+7	2	9	0	0
+7	3	11	0	0
+8	0	1	0	0
+8	1	4	0	0
+8	2	8	0	0
+8	3	11	0	0
+9	0	1	0	0
+9	1	2	0	0
+9	2	8	0	0
+9	3	11	0	0
+Final Q-Values 
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.02		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.01		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.02		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.0		0.0		
+0.0		0.0		0.01		0.0		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.04		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.02		
+0.0		0.0		0.0		0.04		
+0.0		0.0		0.0		0.04		
+0.0		0.0		0.0		0.04		

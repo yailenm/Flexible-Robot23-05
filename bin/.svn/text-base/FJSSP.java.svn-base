@@ -1,0 +1,266 @@
+import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+//import java.awt.Dimension;
+import javax.swing.JButton;
+import java.awt.Rectangle;
+import javax.swing.JFileChooser;
+import java.io.*;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+//import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.ui.RefineryUtilities;
+
+public class FJSSP extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JButton OpenFile = null;
+	private JPanel jContentPane = null;
+	private JFileChooser FileChooser = new JFileChooser();  //  @jve:decl-index=0:visual-constraint="649,12"
+	public File file;
+	private JLabel jLabel1 = null;
+	private JButton Continue = null;
+	private JLabel jLabel2 = null;
+	private JTextField epsilon = null;
+	private JTextField alpha = null;
+	private JTextField gamma = null;
+	private JLabel discFactor = null;
+	private JLabel LRate = null;
+	private JLabel Epsilon = null;
+	private JLabel Iterations = null;
+	private JTextField Cycles = null;
+	private JButton PrintJob = null;
+	public QLearning QL ;
+	private JButton Draw = null;
+	private JPanel jContentPane1 = null;
+	@SuppressWarnings("unused")
+	private int countWordsInFile(File filew) throws IOException {
+        int numberOfWords = 0;  // Number of words.
+        String s= new String();
+        FileReader f = new FileReader(filew);
+	 	BufferedReader a = new BufferedReader(f);
+	 	s = a.readLine();
+	 	String []cadArray = s.split("[ \t]+");
+	 	numberOfWords = cadArray.length;
+        return numberOfWords;
+    }
+
+
+	private JButton getOpenFile() {
+		if (OpenFile == null) {
+			OpenFile = new JButton();
+			OpenFile.setBounds(new Rectangle(237, 24, 85, 29));
+			OpenFile.setText("Open");
+			OpenFile.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					int returnVal = FileChooser.showOpenDialog(FJSSP.this);
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+		                file = FileChooser.getSelectedFile();
+					}
+				}
+			});
+		}
+		return OpenFile;
+	}
+
+
+	private JPanel getJContentPane() {
+		if (jContentPane == null) {
+			Iterations = new JLabel();
+			Iterations.setBounds(new Rectangle(30, 209, 82, 16));
+			Iterations.setText("Iterations");
+			Epsilon = new JLabel();
+			Epsilon.setBounds(new Rectangle(30, 176, 62, 16));
+			Epsilon.setText("Epsilon");
+			LRate = new JLabel();
+			LRate.setBounds(new Rectangle(31, 140, 98, 16));
+			LRate.setText("Learning Rate");
+			discFactor = new JLabel();
+			discFactor.setBounds(new Rectangle(31, 107, 116, 16));
+			discFactor.setText("Discount Factor");
+			jLabel2 = new JLabel();
+			jLabel2.setBounds(new Rectangle(30, 63, 201, 16));
+			jLabel2.setText("Parameters for the Q-Learning");
+			jLabel1 = new JLabel();
+			jLabel1.setBounds(new Rectangle(31, 32, 178, 16));
+			jLabel1.setText("Select instance to Solve");
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			jContentPane.add(getOpenFile(), null);
+			jContentPane.add(jLabel1, null);
+			jContentPane.add(getContinue(), null);
+			jContentPane.add(jLabel2, null);
+			jContentPane.add(getEpsilon(), null);
+			jContentPane.add(getAlpha(), null);
+			jContentPane.add(getGamma(), null);
+			jContentPane.add(discFactor, null);
+			jContentPane.add(LRate, null);
+			jContentPane.add(Epsilon, null);
+			jContentPane.add(Iterations, null);
+			jContentPane.add(getCycles(), null);
+			jContentPane.add(getPrintJob(), null);
+			jContentPane.add(getDraw(), null);
+		}
+		return jContentPane;
+	}
+
+
+
+	private JButton getContinue() {
+		if (Continue == null) {
+			Continue = new JButton();
+			Continue.setBounds(new Rectangle(281, 125, 106, 32));
+			Continue.setText("Continue");
+			Continue.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					double LR = Double.parseDouble(alpha.getText());
+					double DF = Double.parseDouble(gamma.getText());
+					double epsi = Double.parseDouble(epsilon.getText());
+					int cycles = Integer.parseInt(Cycles.getText());
+					
+					try {
+						QL = new QLearning(file, LR, DF, cycles, epsi);
+					} catch (FileNotFoundException e2) {
+						e2.printStackTrace();
+					}
+					try {
+						QL.ReadData(file);
+					} catch (IOException e1) {
+						//System.err.println ("Error opening file");
+						e1.printStackTrace();
+					}
+					try {
+						QL.Execute(LR, DF);
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (CloneNotSupportedException e2) {
+						e2.printStackTrace();
+					}
+					
+				}
+			});
+		}
+		return Continue;
+	}
+
+
+	private JTextField getEpsilon() {
+		if (epsilon == null) {
+			epsilon = new JTextField();
+			epsilon.setBounds(new Rectangle(150, 170, 73, 28));
+			epsilon.setText("0.2");
+		}
+		return epsilon;
+	}
+
+
+	private JTextField getAlpha() {
+		if (alpha == null) {
+			alpha = new JTextField();
+			alpha.setBounds(new Rectangle(150, 135, 73, 28));
+			alpha.setText("0.1");
+		}
+		return alpha;
+	}
+
+
+	private JTextField getGamma() {
+		if (gamma == null) {
+			gamma = new JTextField();
+			gamma.setBounds(new Rectangle(150, 100, 73, 28));
+			gamma.setText("0.8");
+		}
+		return gamma;
+	}
+
+
+	private JTextField getCycles() {
+		if (Cycles == null) {
+			Cycles = new JTextField();
+			Cycles.setBounds(new Rectangle(150, 203, 73, 28));
+			Cycles.setText("1");
+		}
+		return Cycles;
+	}
+
+
+	private JButton getPrintJob() {
+		if (PrintJob == null) {
+			PrintJob = new JButton();
+			PrintJob.setBounds(new Rectangle(288, 171, 97, 29));
+			PrintJob.setText("Print Job");
+			PrintJob.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					QL.PrintJob();
+				}
+			});
+		}
+		return PrintJob;
+	}
+
+
+	/**
+	 * This method initializes Draw	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getDraw() {
+		if (Draw == null) {
+			Draw = new JButton();
+			Draw.setBounds(new Rectangle(293, 216, 96, 29));
+			Draw.setText("Draw");
+			Draw.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+			        Chart demo = new Chart("Gantt Chart Demo");
+			        demo.pack();
+			        RefineryUtilities.centerFrameOnScreen(demo);
+			        demo.setVisible(true);
+			        
+				}
+			});
+		}
+		return Draw;
+	}
+
+
+	/**
+	 * This method initializes jContentPane1	
+	 * @return javax.swing.JPanel	
+	 */
+	@SuppressWarnings("unused")
+	private JPanel getJContentPane1() {
+		if (jContentPane1 == null) {
+			jContentPane1 = new JPanel();
+			jContentPane1.setLayout(new BorderLayout());
+		}
+		return jContentPane1;
+	}
+
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				FJSSP thisClass = new FJSSP();
+				thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				thisClass.setVisible(true);
+			}
+		});
+	}
+
+	
+	public FJSSP() {
+		super();
+		initialize();
+	}
+
+
+	private void initialize() {
+		this.setSize(454, 311);
+		this.setContentPane(getJContentPane());
+		this.setTitle("Flexible Job Shop Scheduling Problem");
+	}
+
+}  //  @jve:decl-index=0:visual-constraint="10,10"

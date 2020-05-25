@@ -1,0 +1,32 @@
+package GUI;
+
+//import hffsp.model.HFFSPInstance;
+//import hffsp.model.Schedule;
+
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+public class ScheduleFrame extends JFrame {
+	
+	private static final long serialVersionUID = 6561306520838117775L;
+	
+	Schedule bestSchedule;
+	ScheduleJComponent scheduleJComponent;
+	Instance problemInstance;
+	
+	public ScheduleFrame(Instance problemInstance, Schedule initialSchedule) {
+		this.problemInstance=problemInstance;
+		this.setTitle(problemInstance.getName()+" | makespan: "+initialSchedule.getMakespan());
+		scheduleJComponent = new ScheduleJComponent(initialSchedule, problemInstance);
+		this.add(scheduleJComponent);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //to close the main application
+		this.setSize(1200, 750);
+		this.setVisible(true);
+	}
+
+    public void saveSchedule(String msg) throws IOException {
+        scheduleJComponent.saveSchedule(problemInstance.getName() + "-" + msg);
+    }
+	
+}

@@ -1,0 +1,1108 @@
+//import java.awt.JobAttributes;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.JFrame;
+
+import be.kahosl.flexjobshop.gui.ScheduleFrame;
+import be.kahosl.flexjobshop.io.FJSReader;
+import be.kahosl.flexjobshop.io.ScheduleReader;
+import be.kahosl.flexjobshop.model.FJSPProblem;
+import be.kahosl.flexjobshop.model.Schedule;
+
+
+public class QLearning {
+
+	private double LearningRate;
+	private double DiscountFactor;
+	private int iterations;
+	private double epsilon;
+	private String filename;
+	private String file_path;
+	private int njobs, nmachines, navg_op;
+	private Job[] Jobs;
+	public Machine[] Machines;
+	private int Cmax;
+	private int BestSol;
+	public int max_num_operations;
+	public LinkedList<Operation> OrderedList;
+	public File instance;
+	String file_saved;
+	// Create an array 
+	int[] array ;
+	public List list = new ArrayList();
+	public LinkedList<Operation> FullOperationList;
+	public LinkedList<Operation> HabOperationList;
+	public int auxiliar=0;
+	public PrintWriter pwQV;
+	public File SolutionFileQV;
+
+	
+	public QLearning(File file, double LearningRate, double DiscountFactor, int cycles, double epsilon) throws FileNotFoundException{
+		this.LearningRate = LearningRate;
+		this.DiscountFactor = DiscountFactor;
+		this.epsilon = epsilon;
+		this.iterations = cycles;
+		this.filename = file.getName();
+		this.file_path = file.getAbsolutePath();
+		this.max_num_operations = 0;	
+		OrderedList = new LinkedList<Operation> ();
+		FullOperationList = new LinkedList<Operation> ();
+		HabOperationList = new LinkedList<Operation> ();
+		SolutionFileQV=new File("Solutions/Mine/QV-" + filename + ".txt");
+		pwQV = new PrintWriter(SolutionFileQV);
+	}
+	
+	public QLearning(double LearningRate){
+		this.LearningRate = LearningRate;
+
+	}
+	
+	
+	public void ReadData(File file) throws IOException{
+		instance = file;
+        String s= new String();
+        FileReader f = new FileReader(file);
+	 	BufferedReader a = new BufferedReader(f);
+	 	//Read First Line
+	 	s = a.readLine();
+	 	String []cadArray = s.split("[ \t]+");
+	 	njobs = Integer.parseInt(cadArray[0]);
+	 	nmachines = Integer.parseInt(cadArray[1]);
+	 	navg_op =  Integer.parseInt(cadArray[2]);
+	 	Jobs = new Job[njobs];
+	 	Machines = new Machine[nmachines];
+	 	for (int i=0; i < njobs; i++)
+	 		Jobs[i] = new Job(i);
+	 	
+	 	for (int j=0; j < nmachines; j++)
+	 		Machines[j] = new Machine(j);
+	 	
+	 	array = new int[njobs];
+		for (int h=0; h < njobs; h++){
+			array[h] = h;
+			list.add(h);
+		}
+	 	
+	 	//Read Jobs
+	 	s = a.readLine();
+	 	int i = 0;
+	 	while (s != null){
+	 		cadArray = s.split("[ \t]+");
+	 		//The first number of the line says the number of operations Job-i will have
+	 		int nop = Integer.parseInt(cadArray[0]);
+	 		if (nop > max_num_operations) 
+	 			max_num_operations = nop;
+	 		Jobs[i].operations = new Operation[nop];
+	 		int index_nmachines_op = 1;
+	 		int cont_nmachines_op = Integer.parseInt(cadArray[1]);
+	 		for (int x = 0; x < nop; x++){
+	 			int counter = 0;
+	 			Jobs[i].operations[x] = new Operation(x, i);
+	 			//Jobs[i].operations[x].machines = new Agent[cont_nmachines_op];
+	 			Jobs[i].operations[x].machines = new int[cont_nmachines_op];
+	 			Jobs[i].operations[x].times = new int[cont_nmachines_op];
+	 			while (counter < cont_nmachines_op){
+	 				Jobs[i].operations[x].machines[counter] = Integer.parseInt(cadArray[index_nmachines_op+counter*2+1]);
+	 				Jobs[i].operations[x].times[counter] = Integer.parseInt(cadArray[index_nmachines_op+counter*2+2]);
+	 				counter++;
+	 			}
+	 			//Initialize the QV
+	 			Jobs[i].operations[x].QV = new double[cont_nmachines_op];
+	 			for (int o=0; o<cont_nmachines_op;o++)
+	 				Jobs[i].operations[x].QV[o] = 0;
+	 			
+	 			if (x != nop-1){
+	 			index_nmachines_op += cont_nmachines_op*2 + 1;
+	 			cont_nmachines_op = Integer.parseInt(cadArray[index_nmachines_op]);
+	 			}
+	 		}
+	 		s = a.readLine();
+	 		i++;
+	 	} //end while (s != null)
+	 	
+	 	for (int m=0; m < nmachines; m++)
+	 		Machines[m].QValues = new double[njobs][max_num_operations];
+	}
+
+	
+	public void SaveQValuestoFile(String FileName, int cmax) throws FileNotFoundException{
+		PrintWriter pw;
+		//String PathSol = "Solutions/Mine/Test.txt";
+		String PathSol = FileName;
+//		File SolutionFile=new File(PathSol);
+//					pw = new PrintWriter(SolutionFile);
+					pwQV.println(instance.getName());
+					pwQV.println(cmax);
+					pwQV.flush();
+					
+					pwQV.println("Final Schedule");
+					
+					for (int m=0; m < njobs; m++)
+						for (int n=0; n < Jobs[m].operations.length; n++){
+							pwQV.print(m +"\t"); //Job ID
+							pwQV.print(n +"\t"); //Oper ID
+							pwQV.write(Jobs[m].operations[n].Ma +"\t"); //index of the machine that executed it
+							pwQV.write(Jobs[m].operations[n].initial_time +"\t");
+							pwQV.write(Jobs[m].operations[n].end_time +"\n");
+							pwQV.flush();
+						}
+					
+					pwQV.write("Final Q-Values \n");
+					
+					for(int q=0; q < nmachines; q++)
+						Machines[q].SaveQValues2File(pwQV);	
+					pwQV.flush();
+				pwQV.close();
+		
+	}
+	
+	public static double roundToDecimals(double d, int c) {
+		int temp=(int)((d*Math.pow(10,c)));
+		return (((double)temp)/Math.pow(10,c));
+		}
+	
+	public void SavetoFile(String FileName, int cmax){
+		PrintWriter pw;
+		//String PathSol = "Solutions/Mine/Test.txt";
+		String PathSol = FileName;
+		File SolutionFile=new File(PathSol);
+		try {
+			pw = new PrintWriter(SolutionFile);
+			pw.println(instance.getName());
+			pw.println(cmax);
+			pw.flush();
+			
+			for (int m=0; m < njobs; m++)
+				for (int n=0; n < Jobs[m].operations.length; n++){
+					pw.print(m +"\t"); //Job ID
+					pw.print(n +"\t"); //Oper ID
+					pw.write(Jobs[m].operations[n].Ma +"\t"); //index of the machine that executed it
+					pw.write(Jobs[m].operations[n].initial_time +"\t");
+					pw.write(Jobs[m].operations[n].end_time +"\n");
+					pw.flush();
+				}
+		pw.close();			
+		}
+		catch (FileNotFoundException e) {
+			System.err.println("Problem writing to file "+SolutionFile.getAbsolutePath());
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	public void PrintJob(){
+		System.out.println(Jobs[1].GetID());
+		System.out.println("Number of operations: " + Jobs[1].operations.length);
+		System.out.println("Possibilities Operation 1: ");
+		for (int g = 0; g < Jobs[1].operations[0].machines.length; g++){
+			System.out.print(Jobs[1].operations[0].machines[g]+" ");
+			System.out.println(Jobs[1].operations[0].times[g]);
+		}
+		
+	}
+	
+	public void PrintRoutes(){
+		for(int j=0; j < njobs; j++)
+			Jobs[j].PrintRoute();
+	}
+	
+	public void SearchRoutes(){	
+		// Shuffle the elements in the array 
+		
+		Collections.shuffle(list);
+		
+//		for (int k=0; k < list.size(); k++)
+//			System.out.print(list.get(k)+"	");
+//		System.out.println();
+		
+//		Collections.shuffle(Arrays.asList(array)); 
+//		Collections.shuffle(Arrays.asList(array));
+//		
+//		for (int k=0; k < array.length; k++)
+//			System.out.print(array[k]+"	");
+//		
+//		System.out.println();
+		
+		for(int j=0; j < njobs; j++)
+			Jobs[(Integer) list.get(j)].GetRoute(epsilon, LearningRate, Machines);
+	}
+	
+	
+	public void SearchRoutesVersion2(){	
+		int j_index=0;
+		int[] JobEndTimes = new int[njobs];
+		//Digo que las operaciones iniciales de cada trabajo estan habilitadas
+		for(int j=0; j < njobs; j++)
+			HabOperationList.add(Jobs[j].operations[0]);
+		
+		//Mientras queden operaciones sin maquinas asignadas sigo llenando FullOperationsList 
+		//seleccionando una operacion random de las habilitadas
+		while (!HabOperationList.isEmpty()){
+			//Selecciono una operacion y pongo en habilitadas la proxima de ese Job si es que tiene mas
+			double rnd = Math.random();
+			int index = Math.abs((int) Math.round(rnd * (HabOperationList.size()-1)));
+			Operation Oper = HabOperationList.get(index);
+			FullOperationList.add(Oper);
+			HabOperationList.remove(index);
+			
+			//si no era la ultima del trabajo
+			j_index = Oper.GetJob(); //indice del trabajo de la operacion
+			
+			int o_index = Oper.GetID(); //indice de la operacion
+			if (Jobs[j_index].operations.length-1 != o_index){
+				HabOperationList.add(Jobs[j_index].operations[o_index+1]);
+			}
+		}
+		
+//		//Print FullOperList
+//		for (int h=0; h < FullOperationList.size(); h++){
+//			Operation Ope = FullOperationList.get(h);
+//			System.out.println("Oper " + Ope.GetID()+" Job " + Ope.GetJob());
+//		}
+			
+		
+		//Ahora para cada operacion en FullOper... seleccionar una maquina
+		for (int f=0; f < FullOperationList.size(); f++){
+			Operation Ope = FullOperationList.get(f);
+			int m = Ope.MachineSelection(epsilon, Machines, Jobs[Ope.GetJob()].aux_end);
+			Ope.Ma = Ope.machines[m]-1;
+			Ope.M = Machines[Ope.machines[m]-1];
+			Ope.index_Ma = m;
+			Machines[Ope.machines[m]-1].work += Ope.proc_time;
+			Machines[Ope.machines[m]-1].Op_assigned.add(Ope);
+			//JobEndTimes[j_index]=Ope.end_time;
+			Jobs[Ope.GetJob()].aux_end = Ope.end_time;
+		}
+
+//		for (int jo=0; jo < njobs; jo++)
+//			System.out.print(Jobs[jo].aux_end+"	");
+		
+//		System.out.println();
+	}
+	
+	public void Initialize(){
+		for (int j=0; j < njobs; j++)
+			Jobs[j].Start(Machines);
+	}
+	
+	public boolean AllJobsFinished(Job[] Jobs){
+		boolean flag = true;
+		
+		for (int b=0; b < njobs ;b++)
+			if (!Jobs[b].finished)
+				return flag = false;
+		
+		return flag;
+	}
+	
+	//receives the operation and the index of the machine that will execute it, and the list of working machines
+	public void SUB_ProcessNonDelay(Operation O, int ind, LinkedList<Machine> working, int counter, double alpha, double gamma, int iter
+			) throws CloneNotSupportedException{	
+		
+		//make a copy of the things as they are when the procedure is called so that ethg can be calculated and changed 
+
+		PrintWriter currentPW = null;
+		
+		boolean finished = false;
+		Operation op_selected = null;
+		Operation last_op = null;
+		LinkedList<Machine> Working = new LinkedList<Machine> ();
+		LinkedList<Operation> choices = new LinkedList<Operation>();
+		Machine[] SUB_Machines = new Machine[nmachines];
+		Job[] SUB_Jobs = new Job[njobs];
+
+		for (int c=0; c < working.size(); c++) 
+			Working.add(working.get(c).clone());
+		
+		for (int m=0; m < nmachines; m++)
+			SUB_Machines[m] = Machines[m].clone();
+		
+		for (int j=0; j < njobs; j++)
+			SUB_Jobs[j] = Jobs[j].clone();
+		
+		SolutionFileQV=new File("Solutions/Mine/Choice-" + counter + ".txt");
+		try {
+			currentPW = new PrintWriter(SolutionFileQV);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+			
+		currentPW.println("Choice " + counter);
+		currentPW.print("Machine "+ SUB_Machines[ind].GetID()+" choices:	");
+		for (int c=0; c < SUB_Machines[ind].Queue.size(); c++)
+			currentPW.print("J"+SUB_Machines[ind].Queue.get(c).GetJob() + "-O" + SUB_Machines[ind].Queue.get(c).GetID() + ", QV: " + roundToDecimals(SUB_Machines[ind].QValues[SUB_Machines[ind].Queue.get(c).GetJob()][SUB_Machines[ind].Queue.get(c).GetID()], 2) + "	 ");
+		//print action selected!!!!!!!!
+		currentPW.println();
+		currentPW.print("Action selected J"+O.GetJob() + "-O" + O.GetID()+"	"); 
+		currentPW.println("From time " + O.initial_time + " to time " + O.end_time);
+		currentPW.flush();
+		
+//		//check if the operations belonging to a job are properly cloned
+//		System.out.println("Original: "+ Jobs[0].operations[0].testing + " cloned: " + SUB_Jobs[0].operations[0].testing);
+//		SUB_Jobs[0].operations[0].testing +=50;
+//		System.out.println("Original: "+ Jobs[0].operations[0].testing + " cloned: " + SUB_Jobs[0].operations[0].testing);
+
+					
+		//do the same that Action Selection does, assuming that the operation selected is the one received as a parameter
+		O.initial_time = (SUB_Jobs[O.GetJob()].j_end_time > SUB_Machines[ind].time) ? SUB_Jobs[O.GetJob()].j_end_time : SUB_Machines[ind].time;
+		SUB_Machines[ind].time = O.initial_time + O.proc_time;
+		
+		SUB_Machines[ind].Queue.remove(O);
+		SUB_Machines[ind].Op_executed.add(O);
+		
+		SUB_Jobs[O.GetJob()].j_end_time = O.end_time;
+		SUB_Jobs[O.GetJob()].time_remaining = SUB_Jobs[O.GetJob()].time_remaining - O.proc_time;
+		
+		
+		for (int n=0; n < Working.size(); n++){
+			last_op = Working.get(n).Op_executed.getLast();
+			//last_op = SUB_Machines[n].Op_executed.getLast();
+			if (last_op.GetID() < SUB_Jobs[last_op.GetJob()].operations.length-1)
+				 SUB_Jobs[last_op.GetJob()].SendNext(last_op.GetID(), SUB_Machines);
+				else
+					 SUB_Jobs[last_op.GetJob()].finished = true;	
+			
+//			double temp = GetMaxNextQV(last_op);
+//			UpdateQV(last_op, temp, LearningRate, DiscountFactor);
+		}
+					
+		Working.clear();
+		
+		if (AllJobsFinished(SUB_Jobs))
+			finished = true;
+		
+//		SUB_Machines[nmachines-1].minInitialM +=25;
+//		System.out.println("Random change: Original: " + Machines[nmachines-1].minInitialM + " and the changed: " + SUB_Machines[nmachines-1].minInitialM);
+//		System.out.println("And the original again: " + Machines[nmachines-1].minInitialM );
+		
+				
+		while(!finished){
+			for (int m=0; m < nmachines; m++){
+				if (!SUB_Machines[m].Queue.isEmpty()){
+					Working.add(SUB_Machines[m]);
+					choices = SUB_Machines[m].MultipleChoices();
+					
+					if (choices.size() > 1){
+//						System.out.println("Multiple Choice");
+						
+						//here I need to divide the selection process, but one has to continue below in order to finish this run
+						for (int c=0; c < choices.size() - 1; c++){
+							counter++;
+							currentPW.println("Division Point");
+							currentPW.println("Multiple Choice, check files from " + counter +" to "+ (counter + choices.size()-1));
+							SUB_ProcessNonDelay(choices.get(c), m, Working, counter, alpha, gamma, iter);
+						}
+						op_selected = choices.get(choices.size()-1); // this is the last one which will finish the current run
+						op_selected.initial_time = (SUB_Jobs[op_selected.GetJob()].j_end_time > SUB_Machines[m].time) ? SUB_Jobs[op_selected.GetJob()].j_end_time : SUB_Machines[m].time;
+						SUB_Machines[m].time = op_selected.initial_time + op_selected.proc_time;
+						//force la seleccion, imprimo a fichero
+						
+						currentPW.print("Machine "+ SUB_Machines[ind].GetID()+" choices:	");
+						for (int c=0; c < SUB_Machines[ind].Queue.size(); c++)
+							currentPW.print("J"+SUB_Machines[ind].Queue.get(c).GetJob() + "-O" + SUB_Machines[ind].Queue.get(c).GetID() + ", QV: " + roundToDecimals(SUB_Machines[ind].QValues[SUB_Machines[ind].Queue.get(c).GetJob()][SUB_Machines[ind].Queue.get(c).GetID()], 2) + "	 ");
+						//print action selected!!!!!!!!
+						currentPW.println();
+						currentPW.print("Action selected J"+op_selected.GetJob() + "-O" + op_selected.GetID()+"	"); // lo habia hecho con O
+						currentPW.println("From time " + op_selected.initial_time + " to time " + op_selected.end_time);
+						currentPW.flush();
+						
+					}
+					else {
+//						System.out.println("Single Choice");
+						op_selected = SUB_Machines[m].ActionSelection(SUB_Jobs, epsilon, LearningRate, currentPW);
+					}
+					
+					SUB_Machines[m].Queue.remove(op_selected);
+					SUB_Machines[m].Op_executed.add(op_selected);
+					op_selected.end_time = op_selected.initial_time + op_selected.proc_time;
+					
+					//a su trabajo actualizarle el end_time y mandar la otra
+					SUB_Jobs[op_selected.GetJob()].j_end_time = op_selected.end_time;
+					SUB_Jobs[op_selected.GetJob()].time_remaining = SUB_Jobs[op_selected.GetJob()].time_remaining - op_selected.proc_time;
+				}
+			}
+			
+			//restart the index of the machine
+
+			for (int n=0; n < Working.size(); n++){
+				last_op = Working.get(n).Op_executed.getLast();
+				//last_op = SUB_Machines[n].Op_executed.getLast();
+				if (last_op.GetID() < SUB_Jobs[last_op.GetJob()].operations.length-1)
+					 SUB_Jobs[last_op.GetJob()].SendNext(last_op.GetID(), SUB_Machines);
+					else
+						 SUB_Jobs[last_op.GetJob()].finished = true;	
+				
+//				double temp = GetMaxNextQV(last_op);
+//				UpdateQV(last_op, temp, LearningRate, DiscountFactor);
+			}
+						
+			Working.clear();
+			//////////////
+			
+			if (AllJobsFinished(SUB_Jobs))
+				finished = true;
+		}
+		
+		
+//		UpdateQValuesProcedure(alpha, gamma, R);	
+		//and I have to print everything to a file!!
+//		counter++; // amount of times that a choice has been computed
+		int ccmax = CalculateCmax(SUB_Jobs);
+		String camino = "Solutions/Mine/Choice-" + counter+".txt";
+		currentPW.println("Makespan: " + ccmax);
+		currentPW.flush();
+		currentPW.close();
+//		System.out.println(camino);
+//		try {
+//			SaveQValuestoFile(camino, cmax);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+	
+	}
+
+	
+	
+	public void ProcessNonDelay(double alpha, double gamma, int iter) throws CloneNotSupportedException{		
+		boolean finished = false;
+		Operation op_selected = null;
+		Operation last_op = null;
+		LinkedList<Machine> Working = new LinkedList<Machine> ();
+		LinkedList<Operation> choices = new LinkedList<Operation>();
+		int counter = 0;
+		
+		while(!finished){
+			for (int m=0; m < nmachines; m++){
+				if (!Machines[m].Queue.isEmpty()){
+					Working.add(Machines[m]);
+//					choices = Machines[m].MultipleChoices();
+					
+//					if (choices.size() > 1){
+//						System.out.println("Multiple Choice");
+//						pwQV.println();
+//						pwQV.println("Multiple Choice, check files from " + (counter+1) +" to "+ (counter + choices.size()-1));
+						//here I need to divide the selection process, but one has to continue below in order to finish this run
+//						for (int c=0; c < choices.size() - 1; c++){
+//							counter++;
+//							SUB_ProcessNonDelay(choices.get(c), m, Working, counter, alpha, gamma, iter);
+//						}
+					
+//						op_selected = choices.get(choices.size()-1); // this is the last one which will finish the current run
+//						op_selected.initial_time = (Jobs[op_selected.GetJob()].j_end_time > Machines[m].time) ? Jobs[op_selected.GetJob()].j_end_time : Machines[m].time;
+//						Machines[m].time = op_selected.initial_time + op_selected.proc_time;
+						//force la seleccion, imprimo en el fichero!!!
+//						pwQV.print("Machine "+ Machines[m].GetID()+" choices:	");
+//						for (int c=0; c < Machines[m].Queue.size(); c++)
+//							pwQV.print("J"+Machines[m].Queue.get(c).GetJob() + "-O" + Machines[m].Queue.get(c).GetID() + ", QV: " + roundToDecimals(Machines[m].QValues[Machines[m].Queue.get(c).GetJob()][Machines[m].Queue.get(c).GetID()], 2) + "	 ");
+//						//print action selected!!!!!!!!
+//						pwQV.println();
+//						pwQV.print("Action selected J"+op_selected.GetJob() + "-O" + op_selected.GetID()+"	"); 
+//						pwQV.println("From time "+op_selected.initial_time + " to time " + op_selected.end_time);
+//						pwQV.flush();
+//					}
+//					else {
+//						System.out.println("Single Choice");
+						op_selected = Machines[m].ActionSelection(Jobs, epsilon, LearningRate, pwQV);
+//					}
+					
+					Machines[m].Queue.remove(op_selected);
+					Machines[m].Op_executed.add(op_selected);
+					op_selected.end_time = op_selected.initial_time + op_selected.proc_time;
+					
+					//a su trabajo actualizarle el end_time y mandar la otra
+					Jobs[op_selected.GetJob()].j_end_time = op_selected.end_time;
+					Jobs[op_selected.GetJob()].time_remaining = Jobs[op_selected.GetJob()].time_remaining - op_selected.proc_time;
+				}
+			}
+			//SOLO LO HACE PA LA ULTIMA OPERACION
+			/*if (op_selected.GetID() < Jobs[op_selected.GetJob()].operations.length-1)
+				 Jobs[op_selected.GetJob()].SendNext(op_selected.GetID(), Machines);
+				else
+					 Jobs[op_selected.GetJob()].finished = true;
+			*/
+			for (int n=0; n < Working.size(); n++){
+				last_op = Working.get(n).Op_executed.getLast();
+				//last_op = Machines[n].Op_executed.getLast();
+				if (last_op.GetID() < Jobs[last_op.GetJob()].operations.length-1)
+					 Jobs[last_op.GetJob()].SendNext(last_op.GetID(), Machines);
+					else
+						 Jobs[last_op.GetJob()].finished = true;	
+				
+//				double temp = GetMaxNextQV(last_op);
+//				UpdateQV(last_op, temp, LearningRate, DiscountFactor);
+			}
+						
+			Working.clear();
+			//////////////
+			
+			if (AllJobsFinished(Jobs))
+				finished = true;
+		}
+		
+	}
+	
+	
+	public double GetMaxNextQV(Operation op){
+		double max=0, ch2;		
+		//buscar el maximo entre las operaciones que se quedan en esta cola y las de la cola de la proxima op de ese job
+		double ch1 = Machines[op.Ma].MaxQVQueue();
+		//chequear que no sea la ultima operacion de ese Job
+		if (op.GetID() < Jobs[op.GetJob()].operations.length-1)
+			ch2 = Jobs[op.GetJob()].operations[op.GetID()+1].M.MaxQVQueue();
+		else 
+			ch2 =0;
+		
+		max = ( ch1 > ch2) ? ch1 : ch2;
+		
+		return max;
+	}
+	
+	
+	public double GetMinNextQV(Operation op){
+		double min=0, ch2;		
+		//buscar el maximo entre las operaciones que se quedan en esta cola y las de la cola de la proxima op de ese job
+		double ch1 = Machines[op.Ma].MinQVQueue();
+		//chequear que no sea la ultima operacion de ese Job
+		if (op.GetID() < Jobs[op.GetJob()].operations.length-1)
+			ch2 = Jobs[op.GetJob()].operations[op.GetID()+1].M.MinQVQueue();
+		else 
+			ch2 =0;
+		
+		min = ( ch1 < ch2) ? ch1 : ch2;
+		
+		return min;
+	}
+	
+	
+	public void UpdateQV(Operation op, double temp, double alpha, double gamma, int R01){
+		double R = (double) 1/op.proc_time;
+//		double WR = Jobs[op.GetJob()].time_remaining;
+		double aux = Machines[op.Ma].QValues[op.GetJob()][op.GetID()];
+		//Machines[op.Ma].QValues[op.GetJob()][op.GetID()] = aux + alpha * (R + gamma * temp);
+		//Machines[op.Ma].QValues[op.GetJob()][op.GetID()] += alpha *(R01 - Machines[op.Ma].QValues[op.GetJob()][op.GetID()]);
+		Machines[op.Ma].QValues[op.GetJob()][op.GetID()] += alpha *(R - Machines[op.Ma].QValues[op.GetJob()][op.GetID()]);
+		//Machines[op.Ma].QValues[op.GetJob()][op.GetID()] += alpha * (R + gamma * temp - Machines[op.Ma].QValues[op.GetJob()][op.GetID()]);
+	}
+	
+	public void UpdateQVGlobal(Operation op, double alpha, double gamma, double temp, int cmax){
+		double R = (double) 1/cmax;
+		double aux = Machines[op.Ma].QValues[op.GetJob()][op.GetID()];
+		
+		
+//		Machines[op.Ma].QValues[op.GetJob()][op.GetID()] = aux + alpha * (R + gamma * temp - aux);
+		
+		//Machines[op.Ma].QValues[op.GetJob()][op.GetID()] = aux + alpha * (R - aux);
+		
+		//cuando es 0 o 1
+		Machines[op.Ma].QValues[op.GetJob()][op.GetID()] = aux + alpha * (cmax + gamma * temp - aux);
+		
+		//Machines[op.Ma].QValues[op.GetJob()][op.GetID()] += alpha * (1/op.proc_time + gamma * temp - Machines[op.Ma].QValues[op.GetJob()][op.GetID()]);
+	}
+	
+	
+	public double MostWorkRemaining(Operation op){
+		return 0;
+	}
+	
+	
+	public void ProcessWithDelay(){
+		boolean finished = false;
+		Operation op_selected;
+		
+		while(!finished){
+			for (int m=0; m < nmachines; m++){
+				if (!Machines[m].Queue.isEmpty()){
+					op_selected = Machines[m].ActionSelection(Jobs, epsilon, LearningRate, pwQV);
+					
+					Machines[m].Queue.remove(op_selected);
+					Machines[m].Op_executed.add(op_selected);
+					op_selected.end_time = op_selected.initial_time + op_selected.proc_time;
+					
+					//a su trabajo actualizarle el end_time y mandar la otra
+					Jobs[op_selected.GetJob()].j_end_time = op_selected.end_time;
+					if (op_selected.GetID() < Jobs[op_selected.GetJob()].operations.length-1)
+						 Jobs[op_selected.GetJob()].SendNext(op_selected.GetID(), Machines);
+						else
+						 Jobs[op_selected.GetJob()].finished = true;
+					
+					Jobs[op_selected.GetJob()].time_remaining = Jobs[op_selected.GetJob()].time_remaining - op_selected.proc_time;
+					
+					//double temp = GetMaxNextQV(op_selected);
+					
+					//double temp = GetMinNextQV(op_selected);
+					
+					//Then create a procedure to update giving the operation and the max
+					//UpdateQV(op_selected, temp, LearningRate, DiscountFactor);					
+					
+				}
+			}
+					
+			if (AllJobsFinished(Jobs))
+				finished = true;
+			
+		}		
+	}
+	
+	
+	public int CalculateCmax(Job[] UJobs){
+		int cmax = UJobs[0].j_end_time;
+		
+		for (int j=1; j<njobs; j++)
+			if (UJobs[j].j_end_time > cmax)
+				cmax = UJobs[j].j_end_time;
+		
+		return cmax;
+	}
+	
+		
+	public void PrintInitialQueues(){
+		for (int m=0; m < nmachines; m++)
+			if (!Machines[m].Queue.isEmpty())
+				Machines[m].PrintQueue();
+			//System.out.println(Machines[m].Queue.getFirst().GetID());
+	}
+	
+	public void PrintValues(){
+		System.out.println("My Learning Rate is: " + LearningRate);
+		System.out.println("My Discount Factor is: " + DiscountFactor);
+		System.out.println("My Epsilon is: " + epsilon);
+		System.out.println("Number of iterations: " + iterations);
+		System.out.println("The instance is: " + filename);
+		System.out.println("Number of jobs: " + njobs);
+		System.out.println("Number of machines: " + nmachines);
+		System.out.println("Average number of machines per operation: " + navg_op);
+	}
+
+	
+	public void CalculateJobsFullTimes(){
+		for (int j=0; j < njobs; j++)
+			Jobs[j].CalculateFullTime();
+	}
+	
+	public void SetRoutes(){
+		int[] J0 = {0,4,5,0,2,2}; int[]PTJ0 = {5,3,2,1,1,6};
+		int[] J1 = {1,2,0,3,0}; int[]PTJ1 = {6,1,2,6,1};
+		int[] J2 = {1,2,0,5,0}; int[]PTJ2 = {6,4,1,6,1};
+		int[] J3 = {0,1,2,4,5}; int[]PTJ3 = {1,6,1,3,2};
+		int[] J4 = {4,0,1,0,3,5}; int[]PTJ4 = {3,1,6,5,6,6};
+		int[] J5 = {2,0,2,1,0,0}; int[]PTJ5 = {4,2,4,6,1,3};
+		int[] J6 = {5,3,2,4,2}; int[]PTJ6 = {1,2,4,1,1};
+		int[] J7 = {2,2,0,1,3}; int[]PTJ7 = {4,4,1,6,6};
+		int[] J8 = {5,4,3,0,5,3}; int[]PTJ8 = {1,5,3,2,6,6};
+		int[] J9 = {5,5,4,5,3,0}; int[]PTJ9 = {2,6,3,1,6,3};
+//		
+//		int[] J0 = {2,1,5,0,2,3}; int[]PTJ0 = {4,1,2,1,1,3};
+//		int[] J1 = {1,2,0,1,0}; int[]PTJ1 = {6,1,2,6,1};
+//		int[] J2 = {1,2,0,2,0}; int[]PTJ2 = {6,4,1,4,1};
+//		int[] J3 = {0,1,2,1,5}; int[]PTJ3 = {1,6,1,1,2};
+//		int[] J4 = {1,0,1,2,1,2}; int[]PTJ4 = {1,1,6,4,6,4};
+//		int[] J5 = {5,0,2,1,0,0}; int[]PTJ5 = {2,2,4,6,1,3};
+//		int[] J6 = {5,3,2,4,2}; int[]PTJ6 = {1,2,4,1,1};
+//		int[] J7 = {5,2,0,1,3}; int[]PTJ7 = {2,4,1,6,6};
+//		int[] J8 = {5,0,3,0,2,3}; int[]PTJ8 = {1,1,3,2,4,6};
+//		int[] J9 = {5,2,1,5,1,3}; int[]PTJ9 = {2,4,1,1,6,2};
+		
+		Jobs[0].SetRoute(J0, Machines, PTJ0);
+		Jobs[1].SetRoute(J1, Machines, PTJ1);
+		Jobs[2].SetRoute(J2, Machines, PTJ2);
+		Jobs[3].SetRoute(J3, Machines, PTJ3);
+		Jobs[4].SetRoute(J4, Machines, PTJ4);
+		Jobs[5].SetRoute(J5, Machines, PTJ5);
+		Jobs[6].SetRoute(J6, Machines, PTJ6);
+		Jobs[7].SetRoute(J7, Machines, PTJ7);
+		Jobs[8].SetRoute(J8, Machines, PTJ8);
+		Jobs[9].SetRoute(J9, Machines, PTJ9);
+	}
+	
+	
+	public void RestartTimesForOnce(){
+		//restart machines' times
+		for (int x=0; x<nmachines; x++){
+			Machines[x].time = 0;
+			Machines[x].TempOrderedList.clear();
+			//Machines[x].Op_assigned.clear();
+			Machines[x].minInitialM = 0;
+		}
+		
+		//restart jobs' times and each job restarts its operations' times
+		for (int j=0; j<njobs; j++){
+			Jobs[j].aux_end = 0;
+			Jobs[j].j_end_time =0;
+			Jobs[j].finished =  false;
+			for (int o=0; o<Jobs[j].operations.length; o++){
+				Jobs[j].operations[o].initial_time = 0;
+				Jobs[j].operations[o].end_time = 0;
+				Jobs[j].operations[o].temp_end = 0;
+			//	Jobs[j].operations[o].proc_time = 0;
+			}
+				
+		}
+		//FullOperationList.clear();
+	}
+	
+		
+	public void RestartTimes(){	
+		//restart machines' times
+		for (int x=0; x<nmachines; x++){
+			Machines[x].time = 0;
+			Machines[x].TempOrderedList.clear();
+			Machines[x].Op_assigned.clear();
+			Machines[x].minInitialM = 0;
+		}
+		
+		//restart jobs' times and each job restarts its operations' times
+		for (int j=0; j<njobs; j++){
+			Jobs[j].aux_end = 0;
+			Jobs[j].j_end_time =0;
+			Jobs[j].finished =  false;
+			for (int o=0; o<Jobs[j].operations.length; o++){
+				Jobs[j].operations[o].initial_time = 0;
+				Jobs[j].operations[o].end_time = 0;
+				Jobs[j].operations[o].temp_end = 0;
+				Jobs[j].operations[o].proc_time = 0;
+			}
+				
+		}
+		FullOperationList.clear();
+	}
+	
+	public void SelectQV(){
+		for (int j=0; j<njobs; j++)
+			Jobs[j].SelectQV(Machines);
+	}
+	
+	public void PrintOrders(){
+		for (int m=0; m<nmachines; m++)
+			Machines[m].PrintOrder();
+	}
+	
+	
+	public void Locate_Op_OrderedList(Operation op){
+		boolean located = false;
+		int i=0;
+		while (!located){
+			// if the List is still empty or this value is higher than the highest so far, then add it
+			if ((OrderedList.isEmpty()) || (OrderedList.getLast().end_time > op.end_time)){  
+//			if (OrderedList.isEmpty()) {  
+				OrderedList.add(op);
+				located = true;
+			}
+			else{
+				if (op.end_time < OrderedList.get(i).end_time)
+					i++;
+				else{
+					OrderedList.add(i, op);
+					located = true;
+				}
+			}
+		}
+	}
+	
+	public void ShowSchedule(String path) throws FileNotFoundException{
+		 boolean releaseDates = false;
+		 String path_file = file_path;
+		 //String path_file = "Data-FJSSP/Brandimarte_Data/Text/MkY.fjs";
+		 //String path_sol = "Solutions/Mine/Test.txt";
+		 String path_sol = path;
+		 ScheduleReader scheduleReader=new ScheduleReader();
+		 File problemFile=new File(path_file);
+		 FJSPProblem fjspProblem = FJSReader.readFJSPProblemFromFile(problemFile, releaseDates);
+		 File solutionFile=new File(path_sol);
+		 Schedule solution = scheduleReader.readSolutionForProblem(problemFile, solutionFile,releaseDates);
+		 ScheduleFrame scheduleFrame=new ScheduleFrame(fjspProblem, solution);
+		 scheduleFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		 
+	}
+	
+	
+	public void PrintQValues(){
+		for(int q=0; q < njobs; q++)
+			Jobs[q].PrintQV();
+	}
+	
+	public void PrintQValuesMachines(){
+		for(int q=0; q < nmachines; q++)
+			Machines[q].PrintQValues();
+	}
+	
+	public int[] CheckAvailability(Machine M, int time_slot, int min_posible_start){ //chequear en las operaciones asignadas los tiempos ocupados
+		int [] resultado = new int[2];
+		boolean located = false;
+		//si esta vacia es 0 todo
+		//if ((M.Op_executed_Optim.size()==0)||(M.Op_executed_Optim.getFirst().initial_time >= time_slot)){
+		if ((M.Op_executed_Optim.isEmpty())||
+				((M.Op_executed_Optim.getFirst().initial_time >= time_slot) && (M.Op_executed_Optim.getFirst().initial_time >= min_posible_start + time_slot))){
+			resultado[0] = 0;
+			resultado[1] = 0;
+			located = true;
+		}
+		else{
+			for (int i=0; i < M.Op_executed_Optim.size()-1; i++){
+			  int aux = M.Op_executed_Optim.get(i+1).initial_time - M.Op_executed_Optim.get(i).end_time;
+			//si la dif entre en inicial de una y el final de la otra es de tama–o del slot necesario entonces devuelvo pos y tiempo inicial
+				//if (aux >= time_slot) {
+				if ((aux >= time_slot) && (M.Op_executed_Optim.get(i).end_time >= min_posible_start)){
+					//it fits here
+					resultado[0] = i+1;
+					resultado[1] = M.Op_executed_Optim.get(i).end_time;
+					located = true;
+				}
+			}
+		}
+	
+		if (!located){
+			resultado[0] = M.Op_executed_Optim.size();
+			resultado[1] = M.Op_executed_Optim.getLast().end_time;
+		}		
+		return resultado;
+	}
+	
+	
+	public void ClearTimesOpt(){		
+		for (int j=0; j < njobs; j++)
+			Jobs[j].temp_endtime=0;
+		
+		OrderedList.clear();
+		
+		for (int m=0; m < nmachines; m++)
+			Machines[m].Op_executed_Optim.clear();	
+	}
+	
+	
+	
+	public void GetBackwardForward(){
+		
+		//Finding slots...
+		for (int t=0; t < OrderedList.size(); t++){
+		int min_initial_j = Jobs[OrderedList.get(t).GetJob()].temp_endtime;
+		//CheckAvailability on the first machine, and this gives a possible initial time on the machine
+		int[] data = CheckAvailability(Machines[OrderedList.get(t).machines[0]-1], OrderedList.get(t).times[0], min_initial_j);
+		int index = data[0]; int min_initial_m = data[1];
+		int initial = (min_initial_j > min_initial_m) ? min_initial_j : min_initial_m;
+		int min_initial = initial;
+		int min_end = initial + OrderedList.get(t).times[0];
+		OrderedList.get(t).temp_index = 0;
+		
+		for (int p=1; p < OrderedList.get(t).machines.length; p++){
+			data = CheckAvailability(Machines[OrderedList.get(t).machines[p]-1], OrderedList.get(t).times[p], min_initial_j);
+			min_initial_m = data[1];
+			initial = (min_initial_j > min_initial_m) ? min_initial_j : min_initial_m;
+			if (initial + OrderedList.get(t).times[p] < min_end){	
+				index = data[0]; 
+				min_initial = initial;
+				min_end = initial + OrderedList.get(t).times[p];
+				OrderedList.get(t).temp_index = p;
+			}
+		}
+		//Jobs[OrderedList.get(t).GetJob()].temp_endtime += OrderedList.get(t).times[OrderedList.get(t).temp_index];
+		Jobs[OrderedList.get(t).GetJob()].temp_endtime = min_end;
+		OrderedList.get(t).initial_time = min_initial;
+		OrderedList.get(t).end_time = min_end;
+		OrderedList.get(t).M = Machines[OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1];
+		OrderedList.get(t).Ma = OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1;;
+		//insertar con posicion donde va...
+		if (index==0)
+			Machines[OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1].Op_executed_Optim.addFirst(OrderedList.get(t));
+		else{
+			//Machines[OrderedList.get(t).temp_index].Op_executed_Optim.add(index, OrderedList.get(t));
+			if (index==Machines[OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1].Op_executed_Optim.size())
+				Machines[OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1].Op_executed_Optim.addLast(OrderedList.get(t));
+			else
+			Machines[OrderedList.get(t).machines[OrderedList.get(t).temp_index]-1].Op_executed_Optim.add(index, OrderedList.get(t));
+		}
+		}
+		
+		//Print this step
+//		for (int i=0; i<OrderedList.size(); i++){
+//			System.out.print("J"+OrderedList.get(i).GetJob()+"O"+OrderedList.get(i).GetID()+" Prefers M" + OrderedList.get(i).machines[OrderedList.get(i).temp_index]);
+//			System.out.println(" From "+OrderedList.get(i).initial_time + " To " + OrderedList.get(i).end_time);
+//		}
+		
+	}
+	
+	public void Order(){
+		for(int x=0; x < njobs; x++)
+			for (int y=0; y < Jobs[x].operations.length; y++)
+				Locate_Op_OrderedList(Jobs[x].operations[y]);
+	
+//		for (int i=0; i<OrderedList.size(); i++)
+//			System.out.println("J"+OrderedList.get(i).GetJob()+"O"+OrderedList.get(i).GetID());
+	}
+	
+	
+	public void ExecuteModeOptimization(){
+		//order the operations by end-time (the highest go first)
+		Order();
+		GetBackwardForward();
+		ClearTimesOpt();
+		Order();
+		GetBackwardForward();
+		for (int j=0; j < njobs; j++)
+			Jobs[j].j_end_time = Jobs[j].operations[Jobs[j].operations.length-1].end_time;
+		//ComputeMakespan
+	}
+	
+	
+	public void UpdateQValuesProcedure(double alpha, double gamma, int R){
+		
+		//ACTUALIZAR LOS Q-VALUES DE LA 1era ITERACION CON EL CMAX OBTENIDO
+		for (int a=0; a < njobs; a++){
+			for (int b=0; b < Jobs[a].operations.length; b++)
+				Jobs[a].operations[b].UpdateQVGlobal(alpha, R);	
+		//System.out.println();
+		}
+		
+//		//ACTUALIZAR LOS Q-VALUES DE LA 2da ITERACION CON EL CMAX OBTENIDO
+//		for (int c=0; c<njobs; c++)
+//			for (int d=0; d<Jobs[c].operations.length;d++){
+//				double temp = GetMaxNextQV(Jobs[c].operations[d]);
+//				UpdateQVGlobal(Jobs[c].operations[d], alpha, gamma, temp, R);
+//		}
+		
+		//ACTUALIZAR LOS Q-VALUES DE LA 2da ITERACION CON EL SPT 
+		for (int c=0; c<njobs; c++)
+			for (int d=0; d < Jobs[c].operations.length; d++){
+				double temp = GetMaxNextQV(Jobs[c].operations[d]);
+				UpdateQV(Jobs[c].operations[d], temp, alpha, gamma, R);
+		}
+						
+	}
+	
+	public void Execute(double alpha, double gamma) throws FileNotFoundException, CloneNotSupportedException{
+		Date date = new Date();
+		long initial = date.getTime();
+		int R;
+		boolean improvement = true;
+		int counter = 0;
+//		for (int it = 0; it < 1000; it++){
+//			SearchRoutes();
+////			PrintRoutes();
+//		}
+		
+//		SearchRoutes();
+		
+//		SetRoutes();
+//		PrintRoutes();
+//		SelectQV();
+//		PrintRoutes();
+//		PrintQValues();
+		
+//		CalculateJobsFullTimes();
+		file_saved = "Solutions/Mine/Solution-" + filename + ".txt";
+		SearchRoutesVersion2();
+		for (int n = 0; n < this.iterations; n++){
+			
+			PrintRoutes();
+			improvement = true;		
+			R=0;
+//			RestartTimes();
+//			RestartTimesForOnce();
+			//SearchRoutes();
+//			SearchRoutesVersion2();
+			//PrintRoutes();			
+			Initialize(); //Send job to the first machine
+			//ProcessWithDelay();
+			pwQV.println("Iteration " + n);
+			ProcessNonDelay(alpha, gamma, n);
+			Cmax = CalculateCmax(Jobs);
+			
+			pwQV.println("makespan-iteration " + n + ": " + Cmax);
+			pwQV.println();
+			pwQV.flush();
+
+//			//Variante pal aprendizaje nada mas
+//			if (n==0){
+//				BestSol = Cmax;
+//				SavetoFile(file_saved, BestSol);
+//				R = 1;	
+//				System.out.println("The makespan of iteration "+ n+" is: " +BestSol);
+//				//PrintQValuesMachines();
+//				} 
+//			else{
+//				if (Cmax <= BestSol){
+//					BestSol = Cmax;
+//				    SavetoFile(file_saved, BestSol);
+//					System.out.println("The makespan of iteration "+ n+" is: " +BestSol);
+//					//PrintQValuesMachines();
+// 				    R = 1;
+//				}
+//			}		
+			
+//			UpdateQValuesProcedure(alpha, gamma, R);	
+//						
+			//Variante 2 ModeOptimization
+			if (n==0) BestSol = Cmax;
+			while (improvement){
+				ExecuteModeOptimization();
+				int CmaxOpt = CalculateCmax(Jobs);
+				int CmaxGlob = (Cmax < CmaxOpt) ? Cmax : CmaxOpt;
+				if (CmaxGlob < BestSol){
+					BestSol = CmaxGlob;
+					SavetoFile(file_saved, BestSol);
+					R=1;
+					//UpdateQValuesProcedure(alpha, gamma, R);
+				}
+				else{
+					improvement = false;
+					if (CmaxOpt==BestSol) R=1;
+					else R=0;
+				}
+			 UpdateQValuesProcedure(alpha, gamma, R);
+			 ClearTimesOpt();
+			}
+			
+			
+//			//Variante 1 Mode Optimization
+//			ExecuteModeOptimization();
+//			
+//			int CmaxOpt = CalculateCmax();		
+//			int CmaxGlob = (Cmax < CmaxOpt) ? Cmax : CmaxOpt;
+//			
+//			if (n==0) BestSol = CmaxGlob;
+//			if (CmaxGlob <= BestSol){
+//				BestSol = CmaxGlob;
+//				SavetoFile(file_saved, BestSol);
+//				R=1;
+//			} else {R=0;}
+//								
+//			UpdateQValuesProcedure(alpha, gamma, R);
+//			
+//			ClearTimesOpt();
+			
+			//System.out.println("The makespan is: "+Cmax);
+			RestartTimesForOnce();
+		}
+		
+		
+		System.out.println("The makespan is: "+BestSol);
+		
+//		AnalyzeQV();
+		
+//		PrintQValues();
+//		PrintQValuesMachines();
+		
+//		SavetoFile(file_saved, BestSol);
+		ShowSchedule(file_saved);
+
+		SaveQValuestoFile("Solutions/Mine/QV-" + filename + ".txt", BestSol);
+		
+		Date date1 = new Date();
+		long fin = date1.getTime();
+		System.out.println((fin-initial)+" Milliseconds...");
+		System.out.println((fin - initial) / 1000+"."+(fin - initial) % 1000+" Seconds...");
+		System.out.println("----------------");
+		
+	}
+//	}
+	
+	
+		
+}

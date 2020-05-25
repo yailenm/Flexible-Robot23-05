@@ -1,0 +1,101 @@
+
+
+public class Job implements Cloneable{
+	
+	private final int ID;
+	public Operation[] operations;
+	public Operation ToTest = new Operation(20,20);
+	public double[][] QValues;
+	public int j_end_time;
+	public boolean finished = false;
+	public int jfulltime = 0;
+	public int time_remaining;
+	public int temp_endtime;
+	public int aux_end = 0;
+	
+	public Job(int i){
+		ID = i;
+		
+	}
+
+	public int GetID(){
+		return ID;
+	}
+	
+	@Override
+	public Job clone() throws CloneNotSupportedException {
+		 	Job jj = (Job) super.clone();
+		 	jj.ToTest = (Operation) ToTest.clone();
+		 	jj.operations = new Operation[operations.length];
+		 	for (int a=0; a < this.operations.length; a++)
+		 		jj.operations[a] = (Operation) operations[a].clone();
+		 	return jj;
+    }
+
+	
+	public void GetRoute(double epsilon, double alpha, Machine[] machs){
+		for (int i=0; i < operations.length; i++){
+			int m = operations[i].MachineSelection(epsilon, machs, aux_end);
+			//operations[i].M = machines[m]; 
+			operations[i].Ma = operations[i].machines[m]-1;
+			operations[i].M = machs[operations[i].machines[m]-1];
+			operations[i].index_Ma = m;
+			machs[operations[i].machines[m]-1].work += operations[i].proc_time;
+			machs[operations[i].machines[m]-1].Op_assigned.add(operations[i]);
+			aux_end = operations[i].end_time;
+//			machs[operations[i].machines[m]-1].Op_assigned.add(e)
+			//operations[i].UpdateQV(m, alpha);
+			}
+	}
+	
+	
+	public void CalculateFullTime(){
+		for (int oper=0; oper < operations.length; oper++)
+			jfulltime += operations[oper].proc_time;
+		time_remaining = jfulltime;
+	}
+	
+	//Dar una ruta inicial!!
+	public void SetRoute(int[] T, Machine[] machs, int[] PT){
+		for (int i=0; i < T.length; i++){
+			operations[i].Ma =  T[i];
+			operations[i].M = machs[T[i]];
+			operations[i].proc_time = PT[i];
+		}
+	}
+
+	
+	public void SelectQV(Machine[] machs){
+		for (int o=0;o<operations.length;o++){
+			int m = operations[o].SelectBest();
+			operations[o].Ma = operations[o].machines[m]-1;
+			operations[o].M = machs[operations[o].machines[m]-1]; 
+			operations[o].proc_time = operations[o].times[m]; //ptime???
+		}
+	}
+	
+	public void PrintRoute(){
+		for (int m=0; m < operations.length; m++)
+			System.out.print((operations[m].Ma+1)+ "	");
+		System.out.println();
+	}
+
+	public void PrintQV(){
+		for (int m=0; m < operations.length; m++)
+			operations[m].PrintQV();
+		System.out.println();
+	}
+	
+	
+	public void Start(Machine[] machines){
+		//System.out.println("Machine to activate: " + operations[0].Ma);
+		machines[operations[0].Ma].Queue.add(operations[0]);
+	}
+	
+	public void SendNext(int index, Machine[] machs){
+		//chequear que haya una proxima!!!
+		machs[operations[index+1].Ma].Queue.add(operations[index+1]);
+		//System.out.println("End time of the job "+ ID +" so far " + j_end_time);
+	}
+	
+}

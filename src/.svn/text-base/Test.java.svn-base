@@ -1,0 +1,30 @@
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
+
+import be.kahosl.flexjobshop.gui.ScheduleFrame;
+import be.kahosl.flexjobshop.io.FJSReader;
+import be.kahosl.flexjobshop.io.ScheduleReader;
+import be.kahosl.flexjobshop.model.FJSPProblem;
+import be.kahosl.flexjobshop.model.Schedule;
+
+
+public class Test {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		 boolean releaseDates = false;
+		 String path_file = "Data-FJSSP/Brandimarte_Data/Text/MkY.fjs";
+		 String path_sol = "Solutions/Test2.txt";
+		 ScheduleReader scheduleReader=new ScheduleReader();
+		 File problemFile=new File(path_file);
+		 FJSPProblem fjspProblem = FJSReader.readFJSPProblemFromFile(problemFile, releaseDates);
+		 File solutionFile=new File(path_sol);
+		 Schedule solution = scheduleReader.readSolutionForProblem(problemFile, solutionFile,releaseDates);
+		 ScheduleFrame scheduleFrame=new ScheduleFrame(fjspProblem, solution);
+		 
+	}
+
+	
+}

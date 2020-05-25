@@ -1,0 +1,172 @@
+%% R1: vingers + zuignap
+%% R2: vingers + zuignap
+%% Operator: ervaren
+
+ACTIONS = {getBasePlate,setBasePlate,getSpring1,setSpring1,getSpring2,setSpring2,getPCB,setPCB,getLid,setLid,clickLid,getButton,setButton,checkSwitch,removeSwitch};
+RESOURCES = {robotL, robotR, operator};
+PRODUCTS = 1..2;
+ZONES = 1..4;
+
+zoneOccupation = array4d(ZONES,PRODUCTS,ACTIONS,RESOURCES,[
+%%zone1
+% P1 = left
+0,0,0,	% getBasePlate
+1,1,1,	% setBasePlate
+0,0,0,	% getSpring1
+1,1,1,	% setSpring1
+0,0,0,	% getSpring2
+1,1,1,	% setSpring2
+0,0,0,	% getPCB
+1,1,1,	% setPCB
+0,0,0,	% getLid
+1,1,1,	% setLid
+1,1,1,	% clickLid
+0,0,0,	% getButton
+1,1,1,	% setButton
+1,1,1,	% checkSwitch
+1,1,1,	% removeSwitch
+
+% P2 = right
+0,0,0,	% getBasePlate
+1,0,0,	% setBasePlate
+0,0,0,	% getSpring1
+1,0,0,	% setSpring1
+0,0,0,	% getSpring2
+1,0,0,	% setSpring2
+0,0,0,	% getPCB
+1,0,0,	% setPCB
+0,0,0,	% getLid
+1,0,0,	% setLid
+1,0,0,	% clickLid
+0,0,0,	% getButton
+1,0,0,	% setButton
+1,0,0,	% checkSwitch
+1,0,0,	% removeSwitch
+
+%%zone2
+% P1 = left
+0,0,0,	% getBasePlate
+0,1,0,	% setBasePlate
+0,0,0,	% getSpring1
+0,1,0,	% setSpring1
+0,0,0,	% getSpring2
+0,1,0,	% setSpring2
+0,0,0,	% getPCB
+0,1,0,	% setPCB
+0,0,0,	% getLid
+0,1,0,	% setLid
+0,1,0,	% clickLid
+0,0,0,	% getButton
+0,1,0,	% setButton
+0,1,0,	% checkSwitch
+0,1,0,	% removeSwitch
+
+% P2 = right
+0,0,0,	% getBasePlate
+1,1,1,	% setBasePlate
+0,0,0,	% getSpring1
+1,1,1,	% setSpring1
+0,0,0,	% getSpring2
+1,1,1,	% setSpring2
+0,0,0,	% getPCB
+1,1,1,	% setPCB
+0,0,0,	% getLid
+1,1,1,	% setLid
+1,1,1,	% clickLid
+0,0,0,	% getButton
+1,1,1,	% setButton
+1,1,1,	% checkSwitch
+1,1,1,	% removeSwitch
+
+%%zone3
+% P1 = left
+0,0,0,	% getBasePlate
+1,1,0,	% setBasePlate
+0,0,0,	% getSpring1
+1,1,0,	% setSpring1
+0,0,0,	% getSpring2
+1,1,0,	% setSpring2
+0,0,0,	% getPCB
+1,1,0,	% setPCB
+0,0,0,	% getLid
+1,1,0,	% setLid
+1,1,0,	% clickLid
+1,0,0,	% getButton
+1,1,0,	% setButton
+1,1,0,	% checkSwitch
+1,1,0,	% removeSwitch
+
+% P2 = right
+0,0,0,	% getBasePlate
+1,0,0,	% setBasePlate
+0,0,0,	% getSpring1
+1,0,0,	% setSpring1
+0,0,0,	% getSpring2
+1,0,0,	% setSpring2
+0,0,0,	% getPCB
+1,0,0,	% setPCB
+0,0,0,	% getLid
+1,0,0,	% setLid
+1,0,0,	% clickLid
+1,0,0,	% getButton
+1,0,0,	% setButton
+1,0,0,	% checkSwitch
+1,0,0,	% removeSwitch
+
+%%zone4
+% P1 = left
+0,0,0,	% getBasePlate
+0,1,0,	% setBasePlate
+0,0,0,	% getSpring1
+0,1,0,	% setSpring1
+0,0,0,	% getSpring2
+0,1,0,	% setSpring2
+0,0,0,	% getPCB
+0,1,0,	% setPCB
+0,0,0,	% getLid
+0,1,0,	% setLid
+0,1,0,	% clickLid
+0,1,0,	% getButton
+0,1,0,	% setButton
+0,1,0,	% checkSwitch
+0,1,0,	% removeSwitch
+
+% P2 = right
+0,0,0,	% getBasePlate
+1,1,0,	% setBasePlate
+0,0,0,	% getSpring1
+1,1,0,	% setSpring1
+0,0,0,	% getSpring2
+1,1,0,	% setSpring2
+0,0,0,	% getPCB
+1,1,0,	% setPCB
+0,0,0,	% getLid
+1,1,0,	% setLid
+1,1,0,	% clickLid
+0,1,0,	% getButton
+1,1,0,	% setButton
+1,1,0,	% checkSwitch
+1,1,0,	% removeSwitch
+
+]);
+
+finishActionBefore = [|
+setBasePlate, setSpring1, |
+setSpring1, setSpring2, |
+setSpring2, setPCB, |
+setPCB, setLid, |
+setLid, clickLid, |
+clickLid, setButton, |
+setButton, checkSwitch, |
+|];
+
+back2back = [|
+getBasePlate, setBasePlate, |
+getSpring1, setSpring1, |
+getSpring2, setSpring2, |
+getPCB, setPCB, |
+getLid, setLid, |
+getButton, setButton, |
+checkSwitch, removeSwitch, |
+|];
+

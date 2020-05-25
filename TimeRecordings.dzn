@@ -1,0 +1,36 @@
+actionDurationTable = array3d(PRODUCTS,ACTIONS,RESOURCES,
+[
+% P1 = left
+30,0,15,  % getBasePlate
+40,0,23,  % setBasePlate
+40,40,29,  % getSpring1
+30,35,31,  % setSpring1
+40,40,29,  % getSpring2
+30,35,31,  % setSpring2
+0,0,16,  % getPCB
+0,0,26,  % setPCB
+0,15,24,  % getLid
+0,35,18,  % setLid
+20,15,9,  % clickLid
+30,30,0,  % getButton
+30,30,0,  % setButton
+0,0,30,  % checkSwitch
+0,0,10,  % removeSwitch
+
+% P2 = right
+30,0,15,  % getBasePlate
+45,0,23,  % setBasePlate
+40,40,29,  % getSpring1
+35,30,31,  % setSpring1
+40,40,29,  % getSpring2
+35,30,31,  % setSpring2
+0,0,16,  % getPCB
+0,0,26,  % setPCB
+0,15,24,  % getLid
+0,30,18,  % setLid
+25,15,9,  % clickLid
+30,30,0,  % getButton
+30,30,0,  % setButton
+0,0,30,  % checkSwitch
+0,0,10,  % removeSwitch
+]);

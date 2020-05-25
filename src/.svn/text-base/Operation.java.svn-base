@@ -1,0 +1,210 @@
+
+public class Operation implements Cloneable{
+	
+	private final int ID;
+	private final int Job;
+	public int initial_time;
+	public int end_time;
+	
+	//set of agents that can execute it...
+	//machines tiene los indices originales de las maquinas en el fichero(empezando en 1)
+	public int[] machines;
+	
+	//time it takes, corresponding to the machines
+	public int[] times;
+	
+	// 1/p_times
+	public double[] oamk;
+	
+	public double[] probabilities;
+	
+	//The machine that will execute it, the index in the array(not the real one)
+	public Machine M;
+	public int Ma;
+	public int index_Ma;
+	//The time it will take on the machine
+	public int proc_time;
+	
+	//indice temporal para el Mode Optimization Procedure, es el indice de la maquina en machines
+	public int temp_index;
+	public int testing = 0;
+	public int temp_initial, temp_end;
+	
+	public double[] QV;
+	
+	public Operation(int i, int j){
+		ID = i;
+		Job = j;
+	}
+
+	public int GetID(){
+		return ID;
+	}
+	
+	public int GetJob(){
+		return Job;
+	}
+	
+	@Override
+	 public Object clone() throws CloneNotSupportedException {
+	        return super.clone();
+	    }
+
+	
+	public int SelectBest(){
+		int x=0;
+		double max = QV[0];
+		for (int qv=1; qv < QV.length; qv++){
+			if (QV[qv] > max){
+				max = QV[qv];
+				x = qv;
+			}
+		}
+		return x;	
+	}
+	
+	//returns the index of the selected machine
+	@SuppressWarnings("unused")
+	private int roulette(double arrayPj[]){
+		double minimo = 0;
+		double maximo = 0;
+		int numAux = 0;
+		double q= (double)Math.random();
+
+		//double arrayAux[] = new double[arrayPj.length]; 
+
+		for (int i =0; i < arrayPj.length; i++){
+			maximo += arrayPj[i]; 
+			if (( maximo>= q)&& (q > minimo)) {
+				numAux = i;
+				break;
+			}
+			minimo = maximo;
+		}
+		return numAux;	
+	}
+	
+	
+	public int MachineSelection(double epsilon, Machine[] machs, int j_end_time){
+		int min = 0;
+//		//Version con probabilidades basadas en el proc_time nada mas
+//		oamk = new double[machines.length];
+//		probabilities = new double[machines.length];
+//		double sum =0;
+//		
+//		for (int x=0; x<oamk.length; x++){
+//			oamk[x] = (double) 1/times[x];
+//			sum += oamk[x];
+//		}	
+//		
+//		for (int p=0; p<oamk.length;p++)
+//			probabilities[p]=(double) oamk[p]/sum;
+//		
+//		int mindex = roulette(probabilities);
+//		proc_time = times[mindex];
+//		return mindex;
+	
+		
+		//Version con el tiempo de trabajo de la maquina(workload), con % de aleatoriedad
+//		double rnd = Math.random();
+//		int mindex = 0;
+//		if (rnd < 0.2){ //one at random
+//			double rnd2 = Math.random();
+//			int rounded = Math.abs((int) Math.round(rnd2 * (machines.length-1)));
+//			mindex = rounded;
+//		}
+//		else{ //mejor opcion
+//		double min = machs[machines[0]-1].work;
+//		for (int x=1; x < machines.length; x++)
+//			if (machs[machines[x]-1].work < min){ 
+//				min = machs[machines[x]-1].work;
+//				mindex = x;
+//		}	
+//		}
+//		proc_time = times[mindex];
+//		return mindex;
+		
+		
+		//Version que selecciona la maquina que primero la terminara (shortest end time, not SPT)
+		double rnd = Math.random();
+		int mindex = 0;
+		if (rnd < 0.2){ //one at random
+			double rnd2 = Math.random();
+			int rounded = Math.abs((int) Math.round(rnd2 * (machines.length-1)));
+			mindex = rounded;
+			end_time+=times[mindex];
+		}
+		else{ //mejor opcion
+ 		min = machs[machines[0]-1].GetLowestEndTime(this, j_end_time, times[0]);
+		for (int x=1; x < machines.length; x++){
+			int aux = machs[machines[x]-1].GetLowestEndTime(this, j_end_time, times[x]);
+			if (aux < min){ 
+				min = aux;
+				mindex = x;
+			}
+		}	
+		end_time = min;
+		}
+		proc_time = times[mindex];
+		
+		//machs[machines[mindex]-1].Op_assigned.add(this);
+		return mindex;
+		
+		
+		
+//		//Version con aprendizaje
+//		double rnd = Math.random();
+//		int a = 0;
+//		if (rnd < 0.5){	//Select a random machine
+//			double rnd2 = Math.random();
+//			int rounded = Math.abs((int) Math.round(rnd2 * (machines.length-1)));
+//			//a = machines[rounded];
+//			a = rounded;
+//			proc_time = times[rounded]; 
+//		}
+//		
+//		else { //Select the best machine
+//			double max = QV[0];
+//			//a = machines[0];
+//			a = 0;
+//			for (int x=1; x < machines.length;x++)
+//				if (QV[x] > max){
+//					max = QV[x];
+//					//a = machines[x];
+//					a = x;
+//				}
+//			proc_time = times[a];
+//		} //end else
+//		
+//		return a;
+
+	}
+	
+	public void PrintQV(){
+		for (int m=0; m < QV.length; m++)
+			System.out.print("M"+ (machines[m]-1)+" "+ QV[m]+ "	");
+	}
+	
+	
+	public void UpdateQV(int index, double alpha){ 	// R es 1/proc_time
+//		double r = (double) 1/proc_time;
+//		QV[index] = QV[index] + alpha * (r - QV[index]);
+		//double ac = (double) 1/M.work;
+//		double ac = (double) 1/(M.work+proc_time);
+		double r = (double) 1/proc_time + (double) 1/M.work;
+		QV[index] = QV[index] + alpha * (r - QV[index]);
+	}
+
+	public void UpdateQVGlobal(double alpha, int cmax){ 	// R es 1/proc_time o 1/cmax
+		//double r = (double) 1/cmax;
+		
+		//QV[Ma] = QV[Ma] + alpha * (r - QV[Ma]);
+		
+		// cuando el reward es 0 o 1
+		QV[index_Ma] = QV[index_Ma] + alpha * (cmax - QV[index_Ma]) ;
+		//System.out.print("QValue Op-"+GetID()+"_Ma-"+(M.GetID()+1)+" ="+QV[index_Ma]+"		");
+	}
+	
+	
+	
+}
